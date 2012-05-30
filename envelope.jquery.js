@@ -1,5 +1,5 @@
 !(function($,window,document,undefined){
-		var methods = {
+		var _methods = {
 			remove : function(eventName){
 
 			},
@@ -8,18 +8,20 @@
 			}
 		};
 		
-		var events = [
+		var _events = [
 
 		];
 
+		var _defaults = {
+			uiFramework : 'none'
+		};
+
 	$.fn.envelope = function(options,events){
 
-		//I think creating 3 vars here is a bit clener than creating one
-		var defaults = {
-				uiFramework : 'none'
-		};
+		_events = _events.concat(events);
+
 		
-		options = $.extend(defaults, options);
+		options = $.extend(_defaults, options);
 
 		//make sure events is an array
 		if($.isArray(events)){
@@ -30,7 +32,9 @@
 				var currentEvent = events[i];
 
 				if($.isObject(events[i]) && events[i].hasOwnProperty('name') && events[i].hasOwnProperty(fn)){
-					document.on(events[i].name,fn);
+					document.on(events[i].name,function(){
+						//use a deferred to call the callback 
+					});
 				}
 			}	
 		}
