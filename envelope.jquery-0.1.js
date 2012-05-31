@@ -1,10 +1,13 @@
-!(function($,window,document,undefined){
+(function($,window,document,undefined){
 		var _methods = {
 			remove : function(eventName){
 
 			},
 			add : function(options){
 
+			},
+			modify : function(options){
+				
 			}
 		};
 		
@@ -25,20 +28,17 @@
 
 		//make sure events is an array
 		if($.isArray(events)){
-			//cache array length
-			var len = events.length;
-			for(var i = 0; i < len; i++){
-				//cache current event
-				var currentEvent = events[i];
 
-				if($.isObject(events[i]) && events[i].hasOwnProperty('name') && events[i].hasOwnProperty(fn)){
-					document.on(events[i].name,function(){
-						//use a deferred to call the callback 
+			$.each(_events,function(){
+
+				if(typeof this === 'object' && this.hasOwnProperty('name') && this.hasOwnProperty('fn')){
+					document.on(this.name,function(){
+						//use a deferred to call the callback
 					});
 				}
-			}	
+			});
 		}
 		
 		return this;
-	}
+	};
 }(jQuery,window,window.document));

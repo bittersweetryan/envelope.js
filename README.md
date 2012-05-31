@@ -1,23 +1,49 @@
 envelope.js
 ===========
 
-Simple jQuery plugin for in app messaging.
+Simple, event driven jQuery plugin for in app messaging.
 
 #Using
 
 `$("#messages").envelope(options,events);`
 
-##Options
+`$("#messages").envelope(
+	{
+		uiFramework : 'jQueryUI'
+	},
+	[
+		{
+			name: 'user.save',
+			message: 'User saved successfully',
+			callback: function(){
+				console.log("User saved");
+			},
+			autoClose: true,
+			addCloseButton: true,
+			type: 'success'
+		}
+	]
+);`
+
+###options
 
 uiFramework : 'jQueryUI | bootstrap : none (default)'
 
-##Events
+###events
 
 Events is an array of objects with the following properties:
  
- * event name
- * message text
- * messageType : 'error | success | info (default)' 
+ * name : '_string_'
+ * message : '_string_'
+ * type : 'error | success | info (default)' 
  * autoClose : true | false
  * addCloseButton : true | false
- * callback
+ * callback : function(){}
+
+###Methods
+
+_add(options)_
+
+_remove(options)_
+
+_modify(options)_
