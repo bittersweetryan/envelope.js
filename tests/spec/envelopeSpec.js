@@ -162,7 +162,7 @@ describe("Envelope with bootstrap.",function(){
 	it("should add a element to the dom on error",function(){
 		$("#errorButton").trigger('test.error');
 
-		expect($("#messages").find("span:first")).toBe(".alert-error");
+		expect($("#messages").find("div")).toBe(".alert-error");
 	});
 
 	it("should add a message on a error event form dom",function(){
@@ -180,7 +180,7 @@ describe("Envelope with bootstrap.",function(){
 	it("should add a untyped message to the dom",function(){
 		$("#untypedButton").trigger('test.untyped');
 
-		expect($("#messages").find("span:first")).toBe("alert-info");
+		expect($("#messages").find("div")).toBe(".alert-info");
 	});
 
 	it("should add a message on a untyped event from dom",function(){
@@ -205,13 +205,15 @@ describe("Envlope should respond to options properly.",function(){
 		loadFixtures('envelopeFixture_bootstrap.html');
 
 		$("#messages").envelope(
-			{uiFramework : 'jQueryUI'},
+			{
+				uiFramework : 'jQueryUI',
+				autoCloseTimeout : 200 //real short timeout so it doesn't slow the test
+			},
 			[
 				{
 					name : 'test.success',
 					message: 'Success saving test.',
-					type: 'success',
-					callback : spies.successSpy
+					type: 'success'
 				}
 			]
 		);
@@ -223,15 +225,15 @@ describe("Envlope should respond to options properly.",function(){
 			$("#successButton").trigger('test.success');
 		});
 		
-		waits(600);
+		waits(300);
 
 		runs ( function(){
-			expect($("#messages").find("div")).not().toBe(":visible");
+			expect($("#messages").find("div")).not.toBe(":visible");
 		});
 
 	});
 
 	it("Should add a close button",function(){
-		expect($("#messages")).toContant(".close")
+		expect($("#messages")).toContain(".close")
 	});
 });

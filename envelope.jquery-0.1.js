@@ -15,7 +15,8 @@
 
 	//plugin defaults
 	var _defaults = {
-		uiFramework : 'none'
+		uiFramework : 'none',
+		autoCloseTimeout : 5000 //autoclose timeout of 5 seconds
 	};
 
 	//defaults for each event
@@ -42,7 +43,9 @@
 
 		bootstrapErrorClass = 'alert-error',
 
-		bootstrapInfoClass = 'alert-info';
+		bootstrapInfoClass = 'alert-info',
+
+		bootstrapCloseButton = '<button class="close" data-dismiss="alert">×</button>';
 
 	//main plugin method
 	$.fn.envelope = function(options,events){
@@ -64,7 +67,6 @@
 					
 					var alert = addAlert(eventOptions.type,
 							eventOptions.message,
-							eventOptions.autoClose,
 							eventOptions.addCloseButton,
 							eventOptions.callback);
 					
@@ -72,6 +74,10 @@
 
 						$this.append(alert);
 						alert.fadeIn('slow');
+
+						if(eventOptions.autoClose){
+							alert.delay(options.autocloseTimeout).fadeOut();
+						}
 
 						if(eventOptions.callback && typeof eventOptions.callback === 'function'){
 							eventOptions.callback();
@@ -82,25 +88,17 @@
 		}
 		
 		//add an alert to the dom
-		function addAlert(type,message,autoClose,addCloseButton,callback){
+		function addAlert(type,message,addCloseButton){
 			var newElement;
 
 			if(options.uiFramework === 'jQueryUI'){
-				newElement = addAlertTojQueryUI.apply(this,Array.prototype.slice.call(arguments));
+				newElement = addAlertTojQueryUI.apply(this,$.makeArray(arguments));
 			}
 			else if(options.uiFramework === 'bootstrap'){
-
+				newElement = addAlertToBootstrap.apply(this,$.makeArray(arguments));
 			}
 			else{
 
-			}
-
-			if(addCloseButton){
-				//implement add close button
-			}
-
-			if(autoClose){
-				//implement autoclose
 			}
 				
 			newElement.hide();
@@ -108,7 +106,7 @@
 			return newElement;
 		}
 
-		function addAlertTojQueryUI(type,message,autoClose,addCloseButton){
+		function addAlertTojQueryUI(type,message,addCloseButton){
 			var newElement = jQueryUIElem.clone();
 			var firstSpan = newElement.find("span:first");
 
@@ -119,7 +117,31 @@
 				firstSpan.addClass(jQueryUISuccessClass);
 			}
 
+
+
 			newElement.find('span:nth-child(2)').html(message);
+
+			return newElement;
+		}
+
+		function addAlertToBootstrap(type,message,addCloseButton){
+			var newElement = bootstrapElem.clone();
+
+			if(type === 'error'){
+				newElement.addClass(bootstrapErrorClass);
+			}
+			else if(type === 'success'){
+				newElement.addClass(bootstrapSuccessClass);
+			}
+			else{
+				newElement.addClass(bootstrapInfoClass);
+			}
+
+			if(addCloseButton){
+				newElement.append(bootstrapCloseButton);
+			}
+
+			newElement.html(message);
 
 			return newElement;
 		}

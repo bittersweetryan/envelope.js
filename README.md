@@ -9,18 +9,19 @@ Simple, event driven jQuery plugin for in app messaging.
 
 `$("#messages").envelope(
 	{
-		uiFramework : 'jQueryUI'
+		uiFramework : 'jQueryUI', //use jQueryui
+		autoCloseTmeout : 5000 //autoclose after 5 seconds
 	},
 	[
 		{
-			name: 'user.save',
-			message: 'User saved successfully',
-			callback: function(){
+			name: 'user.save',  //event to listen for
+			message: 'User saved successfully', //message to add when event is triggered
+			callback: function(){ //callback to be executed when the event is triggered
 				console.log("User saved");
 			},
-			autoClose: true,
-			addCloseButton: true,
-			type: 'success'
+			autoClose: true,  //tell this message to autoclose
+			addCloseButton: true, //add a close button to the div
+			type: 'success'  //type of message to show
 		}
 	]
 );`
@@ -28,7 +29,7 @@ Simple, event driven jQuery plugin for in app messaging.
 ###options
 
 uiFramework : 'jQueryUI | bootstrap : none (default)'
-delay : milliseconds before autoClose
+autoCloseTimeout : _milliseconds before autoClose_
 
 ###events
 
