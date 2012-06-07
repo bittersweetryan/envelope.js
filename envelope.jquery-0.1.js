@@ -23,7 +23,7 @@
 	var _eventDefaults = {
 		type : 'info',
 		autoClose : false,
-		addCloseButtion : false,
+		addCloseButton : false,
 		callback : undefined
 	};
 
@@ -78,7 +78,10 @@
 						alert.fadeIn('slow');
 
 						if(eventOptions.autoClose){
-							alert.delay(options.autocloseTimeout).fadeOut();
+
+							alert.delay(options.autocloseTimeout).fadeOut(function(){
+								$(this).remove();
+							});
 						}
 
 						if(eventOptions.callback && typeof eventOptions.callback === 'function'){
@@ -93,7 +96,7 @@
 		function addAlert(type,message,addCloseButton){
 			var newElement;
 
-			if(options.uiFramework === 'jQueryUI'){
+			if(options.uiFramework === 'jqueryui'){
 				newElement = addAlertTojQueryUI.apply(this,$.makeArray(arguments));
 			}
 			else if(options.uiFramework === 'bootstrap'){
@@ -149,7 +152,6 @@
 			}
 
 			if(addCloseButton){
-				console.log($(bootstrapCloseButton));
 				newElement.append($(bootstrapCloseButton).clone());
 			}
 

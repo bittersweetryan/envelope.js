@@ -28,7 +28,7 @@ Simple, event driven jQuery plugin for in app messaging.
 
 ###options
 
-uiFramework : 'jQueryUI | bootstrap : none (default)'
+uiFramework : 'jqueryui | bootstrap : none (default)'
 autoCloseTimeout : _milliseconds before autoClose_
 
 ###events

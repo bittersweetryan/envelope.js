@@ -12,7 +12,7 @@ describe("Envelope with jQueryUI.",function(){
 		loadFixtures('envelopeFixture_jqueryui.html');
 
 		$("#messages").envelope(
-			{uiFramework : 'jQueryUI'},
+			{uiFramework : 'jqueryui'},
 			[
 				{
 					name : 'test.success',
@@ -214,7 +214,8 @@ describe("Envlope should respond to options properly for bootstrap.",function(){
 					name : 'test.success',
 					message: 'Success saving test.',
 					type: 'success',
-					addCloseButton : true
+					addCloseButton : true,
+					autoClose : true
 				}
 			]
 		);
@@ -226,10 +227,11 @@ describe("Envlope should respond to options properly for bootstrap.",function(){
 			$("#successButton").trigger('test.success');
 		});
 		
-		waits(400);
+		waits(800);
 
 		runs ( function(){
-			expect($("#messages").find("div")).not.toBe(":visible");
+			console.log($("#messages").find("div").is(":visible"));
+			expect($("#messages").find("div").is(":visible")).toBeFalsy();
 		});
 
 	});
@@ -248,7 +250,7 @@ describe("Envlope should respond to options properly for jQueryUI.",function(){
 
 		$("#messages").envelope(
 			{
-				uiFramework : 'jQueryUI',
+				uiFramework : 'jqueryui',
 				autoCloseTimeout : 200 //real short timeout so it doesn't slow the test
 			},
 			[
@@ -256,7 +258,8 @@ describe("Envlope should respond to options properly for jQueryUI.",function(){
 					name : 'test.success',
 					message: 'Success saving test.',
 					type: 'success',
-					addCloseButton : true
+					addCloseButton : true,
+					autoClose : true
 				}
 			]
 		);
@@ -268,10 +271,10 @@ describe("Envlope should respond to options properly for jQueryUI.",function(){
 			$("#successButton").trigger('test.success');
 		});
 		
-		waits(400);
+		waits(800);
 
 		runs ( function(){
-			expect($("#messages").find("div")).not.toBe(":visible");
+			expect($("#messages").is(":visible")).toBeFalsy();
 		});
 
 	});
