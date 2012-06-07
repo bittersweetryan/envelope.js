@@ -45,7 +45,9 @@
 
 		bootstrapInfoClass = 'alert-info',
 
-		bootstrapCloseButton = '<button class="close" data-dismiss="alert">×</button>';
+		bootstrapCloseButton = '<button class="close" data-dismiss="alert">x</button>',
+
+		jQueryUICloseButton = '<a href="#" class="ui-dialog-titlebar-close ui-corner-all" role="button"><span class="ui-icon ui-icon-closethick" style="float: right">close</span></a>';
 
 	//main plugin method
 	$.fn.envelope = function(options,events){
@@ -64,7 +66,7 @@
 
 				//make sure the options has a name
 				if(typeof eventOptions === 'object' && eventOptions.hasOwnProperty('name')){
-					
+
 					var alert = addAlert(eventOptions.type,
 							eventOptions.message,
 							eventOptions.addCloseButton,
@@ -117,7 +119,15 @@
 				firstSpan.addClass(jQueryUISuccessClass);
 			}
 
+			if(addCloseButton){
+				var closeButton = $(jQueryUICloseButton).clone();
 
+				closeButton.on('click',function(){
+					$(this).parent().parent().fadeOut('slow');
+				});
+
+				newElement.append(jQueryUICloseButton);
+			}
 
 			newElement.find('span:nth-child(2)').html(message);
 
@@ -125,6 +135,7 @@
 		}
 
 		function addAlertToBootstrap(type,message,addCloseButton){
+
 			var newElement = bootstrapElem.clone();
 
 			if(type === 'error'){
@@ -138,7 +149,8 @@
 			}
 
 			if(addCloseButton){
-				newElement.append(bootstrapCloseButton);
+				console.log($(bootstrapCloseButton));
+				newElement.append($(bootstrapCloseButton).clone());
 			}
 
 			newElement.html(message);

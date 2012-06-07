@@ -199,21 +199,22 @@ describe("Envelope with bootstrap.",function(){
 
 });
 
-describe("Envlope should respond to options properly.",function(){
+describe("Envlope should respond to options properly for bootstrap.",function(){
 
 	beforeEach(function(){
 		loadFixtures('envelopeFixture_bootstrap.html');
 
 		$("#messages").envelope(
 			{
-				uiFramework : 'jQueryUI',
+				uiFramework : 'bootstrap',
 				autoCloseTimeout : 200 //real short timeout so it doesn't slow the test
 			},
 			[
 				{
 					name : 'test.success',
 					message: 'Success saving test.',
-					type: 'success'
+					type: 'success',
+					addCloseButton : true
 				}
 			]
 		);
@@ -225,7 +226,7 @@ describe("Envlope should respond to options properly.",function(){
 			$("#successButton").trigger('test.success');
 		});
 		
-		waits(300);
+		waits(400);
 
 		runs ( function(){
 			expect($("#messages").find("div")).not.toBe(":visible");
@@ -234,6 +235,50 @@ describe("Envlope should respond to options properly.",function(){
 	});
 
 	it("Should add a close button",function(){
-		expect($("#messages")).toContain(".close")
+		$("#successButton").trigger('test.success');
+
+		expect($("#messages")).toContain(".close");
+	});
+});
+
+describe("Envlope should respond to options properly for jQueryUI.",function(){
+
+	beforeEach(function(){
+		loadFixtures('envelopeFixture_jqueryui.html');
+
+		$("#messages").envelope(
+			{
+				uiFramework : 'jQueryUI',
+				autoCloseTimeout : 200 //real short timeout so it doesn't slow the test
+			},
+			[
+				{
+					name : 'test.success',
+					message: 'Success saving test.',
+					type: 'success',
+					addCloseButton : true
+				}
+			]
+		);
+	});
+
+	it("Should disappear after default amount of time.",function(){
+
+		runs ( function(){
+			$("#successButton").trigger('test.success');
+		});
+		
+		waits(400);
+
+		runs ( function(){
+			expect($("#messages").find("div")).not.toBe(":visible");
+		});
+
+	});
+
+	it("Should add a close button",function(){
+		$("#successButton").trigger('test.success');
+
+		expect($("#messages")).toContain(".ui-dialog-titlebar-close");
 	});
 });
