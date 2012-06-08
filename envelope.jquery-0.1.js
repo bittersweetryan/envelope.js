@@ -31,7 +31,7 @@
 	var jQueryUIElem = $('<p><span class="ui-icon" style="float: left; margin-right: .3em;"></span>' +
 						'<span></span></p>'),
 
-		bootstrapElem = $('<div class="alert"></div>'),
+		bootstrapElem = $('<div class="alert"><span></span></div>'),
 
 		defaultElem = $('<div></div>'),
 
@@ -112,6 +112,7 @@
 		}
 
 		function addAlertTojQueryUI(type,message,addCloseButton){
+
 			var newElement = jQueryUIElem.clone();
 			var firstSpan = newElement.find("span:first");
 
@@ -138,7 +139,6 @@
 		}
 
 		function addAlertToBootstrap(type,message,addCloseButton){
-
 			var newElement = bootstrapElem.clone();
 
 			if(type === 'error'){
@@ -150,12 +150,18 @@
 			else{
 				newElement.addClass(bootstrapInfoClass);
 			}
-
+			
 			if(addCloseButton){
-				newElement.append($(bootstrapCloseButton).clone());
+				var closeButton = $(bootstrapCloseButton).clone();
+
+				closeButton.on('click',function(){
+					$(this).parent().fadeOut('slow');
+				});
+
+				newElement.append(closeButton);
 			}
 
-			newElement.html(message);
+			newElement.find('span').html(message);
 
 			return newElement;
 		}

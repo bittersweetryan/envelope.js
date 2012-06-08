@@ -227,10 +227,9 @@ describe("Envlope should respond to options properly for bootstrap.",function(){
 			$("#successButton").trigger('test.success');
 		});
 		
-		waits(800);
+		waits(1200);
 
 		runs ( function(){
-			console.log($("#messages").find("div").is(":visible"));
 			expect($("#messages").find("div").is(":visible")).toBeFalsy();
 		});
 
@@ -269,12 +268,13 @@ describe("Envlope should respond to options properly for jQueryUI.",function(){
 
 		runs ( function(){
 			$("#successButton").trigger('test.success');
+			console.log(new Date());
 		});
 		
-		waits(800);
+		waits(1200);
 
 		runs ( function(){
-			expect($("#messages").is(":visible")).toBeFalsy();
+			expect($("#messages>p").is(":visible")).toBeFalsy();
 		});
 
 	});
