@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="envelope.css">
+	<link rel="stylesheet" type="text/css" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/themes/smoothness/jquery-ui.css">
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.0.3/bootstrap.min.js"></script>
+	<script type="text/javascript" src="envelope.jquery-0.1.js"></script>
+	<script type="text/javascript">
+		$(function(){
+            
+	    $("#successButton").on('click',function(){
+	        $(this).trigger('test.success');
+	    });
+
+	    $("#errorButton").on('click',function(){
+	        $(this).trigger('test.error');
+	    });
+	    
+	    $("#untypedButton").on('click',function(){
+	        $(this).trigger('test.untyped');
+	    });
+	    
+	    $("#messages").envelope(
+	        {uiFramework : 'jqueryui'},
+	        [
+	            {
+	                name : 'test.success',
+	                message: 'Success saving test.',
+	                type: 'success',
+	                callback : function(){console.log("Success!");}
+	            },
+	            {
+	                name : 'test.error',
+	                message : 'Error saving test.',
+	                type : 'error',
+	                callback : function(){console.log("Oh Noes!");}
+	            },
+	            {
+	                name : 'test.untyped',
+	                message : 'Untyped saving test.',
+	                callback : function(){console.log("What do do?");}
+	            }
+	        ]
+	    );
+	});
+	</script>
+</head>
+<body>
+	<div id="content">
+	    <div id="messages"></div>
+	    <div id="section">
+	        Hello world.
+	        <input type="button" id="successButton" value="Trigger Success">
+	        <input type="button" id="errorButton" value="Trigger Error">
+	        <input type="button" id="untypedButton" value="Trigger Untyped">
+	    </div>
+	</div>
+	  <p class="env_container">
+      <span class="sunkenText">Hello World</span>
+  </p>
+    <p class="env_container success">
+      <span class="sunkenText">Hello World</span>
+  </p>
+      <p class="env_container error">
+      <span class="sunkenText">Hello World</span>
+  </p>
+</body>
+</html>
