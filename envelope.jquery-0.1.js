@@ -57,13 +57,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 		bootstrapCloseButton = '<button class="close" data-dismiss="alert">x</button>',
 
-		jQueryUICloseButton = '<a href="#" class="ui-dialog-titlebar-close ui-corner-all" role="button"><span class="ui-icon ui-icon-closethick" style="float: right">close</span></a>';
+		jQueryUICloseButton = '<a href="#" class="ui-dialog-titlebar-close ui-corner-all" role="button"><span class="ui-icon ui-icon-closethick" style="float: right">close</span></a>',
 
-		defaultElem = $('<div class="env_container"><p class="sunkenText">Hello World</p></div>');
+		defaultElem = $('<div class="env_container"><p class="sunkenText">Hello World</p></div>'),
 
-		defaultCloseButton = $('<div class="close">x</div>');
+		defaultCloseButton = $('<div class="close">x</div>'),
 
-		defaultSuccessClass = 'success';
+		defaultSuccessClass = 'success',
 
 		defaultErrorClass = 'error';
 
