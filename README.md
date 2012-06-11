@@ -5,7 +5,8 @@ Enveope is a simple, _**event driven**_ jQuery plugin for in app messaging desig
 
 One issue with using callbacks to show user alerts is that they are not very reuseable. Using an evented approach allows you to decouple the action of showing a message to your users with the function or callback that generates it.
 
-`$.ajax({
+```js
+$.ajax({
 
 	url : ...,
 	
@@ -22,11 +23,13 @@ One issue with using callbacks to show user alerts is that they are not very reu
 	error : function(){
 		...
 	}
-});` 
+}); 
+```
 
 Not only is this hard to maintain, but is difficult to reuse.  Envelope decouples this by making the above code look like:
 
-`$.ajax({
+```js
+$.ajax({
 
 	url : ...,
 	
@@ -37,17 +40,21 @@ Not only is this hard to maintain, but is difficult to reuse.  Envelope decouple
 	error : function(){
 		$.trigger('save.error');
 	}
-});` 
+});
+``` 
 
 #Using
 
 In order to use envelope, you attach it to a container and pass it options and events.
 
-`$("#messages").envelope(options,events);`
+```js
+$("#messages").envelope(options,events);
+```
 
 Lets take a look a a more complete example: 
 
-`$("#messages").envelope(
+```js
+$("#messages").envelope(
 	{
 		uiFramework : 'jqueryui', //use jQueryui
 		autoCloseTmeout : 5000 //autoclose after 5 seconds
@@ -64,7 +71,8 @@ Lets take a look a a more complete example:
 			type: 'success'  //type of message to show
 		}
 	]
-);`
+);
+```
 
 ###Options
 
