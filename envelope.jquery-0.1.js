@@ -49,13 +49,31 @@
 
 		jQueryUICloseButton = '<a href="#" class="ui-dialog-titlebar-close ui-corner-all" role="button"><span class="ui-icon ui-icon-closethick" style="float: right">close</span></a>';
 
+		defaultElem = $('<div class="env_container"><p class="sunkenText">Hello World</p></div>');
+
+		defaultCloseButton = $('<div class="close">x</div>');
+
+		defaultSuccessClass = 'success';
+
+		defaultErrorClass = 'error';
+
+
 	//main plugin method
 	$.fn.envelope = function(options,events){
 		var $this = $(this);
 
+		//if options is an array that means user didn't supply any options and starts with events
+		if($.isArray(options)){
+			events = options;
+		}
+
 		_events = $.extend({},_events, events);
 		
-		options = $.extend({},_defaults, options);
+		//if options is an object extend it with the defaults
+		if(typeof options === 'object'){
+			options = $.extend({},_defaults, options);
+		}
+		
 
 		//make sure events is an array
 		if($.isArray(events)){
@@ -103,7 +121,7 @@
 				newElement = addAlertToBootstrap.apply(this,$.makeArray(arguments));
 			}
 			else{
-
+				newElement = addAlertToDefault.apply(this,$.makeArray(arguments));
 			}
 				
 			newElement.hide();
@@ -134,6 +152,32 @@
 			}
 
 			newElement.find('span:nth-child(2)').html(message);
+
+			return newElement;
+		}
+
+		function addAlertToDefault(type,message,addCloseButton){
+
+			var newElement = defaultElem.clone();
+
+			if(type === 'error'){
+				newElement.addClass(defaultErrorClass);
+			}
+			else if(type === 'success'){
+				newElement.addClass(defaultSuccessClass);
+			}
+
+			if(addCloseButton){
+				var closeButton = defaultCloseButton.clone();
+
+				closeButton.on('click',function(){
+					$(this).parent().fadeOut('slow');
+				});
+
+				newElement.append(closeButton);
+			}
+
+			newElement.find('p').html(message);
 
 			return newElement;
 		}
