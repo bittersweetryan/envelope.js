@@ -1,5 +1,6 @@
 envelope.js
 ===========
+To skip all this nonsense and see it in action here is a fiddle for you to play with: <a href="http://jsfiddle.net/bittersweetryan/GbAfk/" target="_blank">http://jsfiddle.net/bittersweetryan/GbAfk/</a>.
 
 Envelope is a simple, _**event driven**_ jQuery plugin for in app messaging designed to work with popular UI frameworks as well as without. 
 
