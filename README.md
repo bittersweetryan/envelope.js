@@ -1,7 +1,7 @@
 envelope.js
 ===========
 
-Enveope is a simple, _**event driven**_ jQuery plugin for in app messaging designed to work with popular UI frameworks as well as without. 
+Envelope is a simple, _**event driven**_ jQuery plugin for in app messaging designed to work with popular UI frameworks as well as without. 
 
 One issue with using callbacks to show user alerts is that they are not very reuseable. Using an evented approach allows you to decouple the action of showing a message to your users with the function or callback that generates it.
 
