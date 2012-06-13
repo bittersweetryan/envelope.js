@@ -107,9 +107,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 						if(eventOptions.autoClose){
 
-							alert.delay(options.autocloseTimeout).fadeOut(function(){
-								$(this).remove();
-							});
+							var t = setTimeout(function(){
+								alert.fadeOut('slow',function(){
+									$(this).remove();
+								});
+
+								clearTimeout(t);
+							},options.autoCloseTimeout);
 						}
 
 						if(eventOptions.callback && typeof eventOptions.callback === 'function'){
