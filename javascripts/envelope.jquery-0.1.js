@@ -43,8 +43,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 		bootstrapElem = $('<div class="alert"><span></span></div>'),
 
-		defaultElem = $('<div></div>'),
-
 		jQueryUISuccessClass = 'ui-icon-info',
 
 		jQueryUIErrorClass = 'ui-icon-error',
@@ -103,13 +101,18 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 					$(document).on(eventOptions.name,function(){
 
 						$this.append(alert);
+
 						alert.fadeIn('slow');
 
 						if(eventOptions.autoClose){
 
-							alert.delay(options.autocloseTimeout).fadeOut(function(){
-								$(this).remove();
-							});
+							var t = setTimeout(function(){
+								alert.fadeOut('slow',function(){
+									$(this).remove();
+								});
+
+								clearTimeout(t);
+							},options.autoCloseTimeout);
 						}
 
 						if(eventOptions.callback && typeof eventOptions.callback === 'function'){

@@ -3,18 +3,27 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="chrome=1">
-	<title>Envelope.js by bittersweetryan</title>
+	<title>Envelope.js - An event based UI messaging system plugin for jQuery.</title>
 
+	<!-- Stylesheets -->
 	<link rel="stylesheet" href="stylesheets/styles.css">
 	<link rel="stylesheet" href="stylesheets/pygment_trac.css">
 	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/flick/jquery-ui.css">
 	<link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="stylesheets/prettify.css">
 
+	<!-- Libraries, etc -->
 	<script src="javascripts/scale.fix.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script src="javascripts/bootstrap.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 	<script src="javascripts/envelope.jquery-0.1.js"></script>
+	<script src="javascripts/prettify.js"></script>
+
+	<!-- envelope -->
+	<script src="javascripts/envelope.jquery-0.1.js"></script>
+	<script src="javascripts/createAlerts.js"></script>
+
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
 	<!--[if lt IE 9]>
@@ -33,53 +42,55 @@
 		  <li><a href="https://github.com/bittersweetryan/envelope.js">View On <strong>GitHub</strong></a></li>
 		</ul>
 </header>
-	<section>
+	<section id="intro">
 		<h3>Decouple your user feedback messages from the functions that generate them.</h3>
 
-<p>Have you ever written code that looks like this?
-	<pre><code>$.ajax({
+		<p>Have you ever written code that looks like this?
+			<pre><code class="prettyprint">$.ajax({
+	url : ...,
 
-    url : ...,
+	success : function(){
+	    $msg = $("<p>Success saving.</p>").hide();
 
-    success : function(){
-        $msg = $("<p>Success saving.</p>").hide();
+	    $('#messages').append(
+	        $msg;
+	    );
 
-        $('#messages').append(
-            $msg;
-        );
+	    $msg.fadeIn("slow");
+	},
 
-        $msg.fadeIn("slow");
-    },
-
-    error : function(){
-        ...
-    }
+	error : function(){
+	    ...
+	    }
 });</code></pre>
 
-If so, you quickly find out that you are writing a lot of display code in your callbacks, that its hard to reuse this code, and its hard to maintain this code.  
-</p>
+		If so, you quickly find out that you are writing a lot of display code in your callbacks, that its hard to reuse this code, and its hard to maintain this code.  
+		</p>
 
-<p>Using envelope, your callbacks become much more elegant:
-	<pre><code>
-$.ajax({
+		<p>Using envelope, your callbacks become much more elegant:
+			<pre><code class="prettyprint">$.ajax({
 
-    url : ...,
+	url : ...,
 
-    success : function(){
-        $.trigger('save.success') //note namespaced event
-    },
+	success : function(){
+	    $.trigger('save.success') //note namespaced event
+	},
 
-    error : function(){
-        $.trigger('save.error');
-    }
-});
-</pre></code>
-</p>
-	  </section>
-	</div>
+	error : function(){
+	    $.trigger('save.error');
+	}
+});</pre></code>
+		</p>
+		<h3>Lets take a look at it in action</h3>
+		<div id="messages_bootstrap"></div>
+		<div id="messages_ui"></div>
+		<div id="messages_default"></div>
+		<a href="#" id="trigger_save">tigger save event</a>
+	</section>
+
 	<footer>
 	  <p>Project maintained by <a href="https://github.com/bittersweetryan">bittersweetryan</a></p>
-	  <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+	  <p>Hosted on GitHub Pages</p>
 	</footer>
 	<!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
 			  <script type="text/javascript">
