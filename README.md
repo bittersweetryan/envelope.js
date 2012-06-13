@@ -100,3 +100,9 @@ _add(options)_
 _remove(options)_
 
 _modify(options)_
+
+
+##TODO
+ * append additional text to the message triggered
+ * add events after initialization
+ * remove events
