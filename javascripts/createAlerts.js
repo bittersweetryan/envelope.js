@@ -11,10 +11,10 @@ $(function(){
 		[
 			{
 				name : 'bootstrap.save',
-				message: "You just clicked the save button.", 
+				message: "You just clicked the save button.",
 				callback: function(){
 				//	$(this).trigger("callback.fired");
-				}, 
+				},
 				autoClose: true,
 				addCloseButton: true,
 				type: 'info'
