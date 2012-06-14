@@ -1,4 +1,6 @@
 $(function(){
+	prettyPrint();
+
 	var $messageContainer_bootstrap = $("#messages_bootstrap");
 	var $messageContainer_ui = $("#messages_ui");
 	var $messageContainer_default = $("#messages_default");
