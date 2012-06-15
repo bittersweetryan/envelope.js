@@ -1,227 +1,244 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="chrome=1">
-	<title>Envelope.js - An event based UI messaging system plugin for jQuery.</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Envelope.js - An event based UI messaging system plugin for jQuery.</title>
 
-	<!-- Stylesheets -->
-	<link rel="stylesheet" href="stylesheets/styles.css">
-	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/flick/jquery-ui.css">
-	<link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="stylesheets/prettify.css">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/flick/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/prettify.css">
 
-	<!-- Libraries, etc -->
-	<script src="javascripts/prettify.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<script src="javascripts/bootstrap.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
-	<script src="javascripts/envelope.jquery-0.1.js"></script>
+    <!-- Libraries, etc -->
+    <script src="javascripts/prettify.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="javascripts/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+    <script src="javascripts/envelope.jquery-0.1.js"></script>
 
-	<!-- envelope -->
-	<script src="javascripts/envelope.jquery-0.1.js"></script>
-	<script src="javascripts/createAlerts.js"></script>
+    <!-- envelope -->
+    <script src="javascripts/envelope.jquery-0.1.js"></script>
+    <script src="javascripts/createAlerts.js"></script>
 
-	<!--[if lt IE 9]>
-	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 </head>
 <body>
 <a href="https://github.com/bittersweetyan/envelope.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
-	<!-- header -->
-	<div class="row-fluid">
-		<div class="span12 header shadow blue-gradient">
-			<header>
-				<div class="container">
-					<h1 class="sunken-text-dark">envelope.js</h1>
-					<h3>Envelope.js is a simple, event driven jQuery plugin for in app messaging designed to work with or without popular UI frameworks.</h3>
-				</div>
-			</header>
-		</div>
-	</div>
-	<!-- /header -->
-	<!-- container -->
-	<div class="container">
-		<!-- welcome -->
-		<div class="row show-grid">
-			<div class="span12">
-				<section id="intro">
-				<div class="page-header">
-					<h3>Decouple your user feedback messages from the functions that generate them.</h3>
-				</div>
-				</section>
-			</div>
-		</div>
-		<!-- /welcome -->
-		<!-- intro -->
-		<div class="row">
-			<div class="span8">
-				<div class="row">
-					<div class="span3">
-						<section>
-							<p class="lead">Have you ever written code that looks like this?</p>
-							<p>If so, you quickly find out that you are writing a lot of display code in your callbacks, that its hard to reuse this code, and its hard to maintain this code.</P>
-						</section>
-					</div>
-					<div class="span5">
-						<pre><code class="prettyprint">$.ajax({
-	url : ...,
+    <!-- header -->
+    <div class="row-fluid">
+        <div class="span12 header shadow blue-gradient">
+            <header>
+                <div class="container">
+                    <h1 class="sunken-text-dark">envelope.js</h1>
+                    <h3>Envelope.js is a simple, event driven jQuery plugin for in app messaging designed to work with or without popular UI frameworks.</h3>
+                </div>
+            </header>
+        </div>
+    </div>
+    <!-- /header -->
+    <!-- container -->
+    <div class="container">
+        <!-- welcome -->
+        <div class="row show-grid">
+            <div class="span12">
+                <section id="intro">
+                <div class="page-header">
+                    <h3>Decouple your user feedback messages from the functions that generate them.</h3>
+                </div>
+                </section>
+            </div>
+        </div>
+        <!-- /welcome -->
+        <!-- intro -->
+        <div class="row">
+            <div class="span8">
+                <div class="row">
+                    <div class="span3">
+                        <section>
+                            <p class="lead">Have you ever written code that looks like this?</p>
+                            <p>If so, you quickly find out that you are writing a lot of display code in your callbacks, that its hard to reuse this code, and its hard to maintain this code.</P>
+                        </section>
+                    </div>
+                    <div class="span5">
+                        <pre><code class="prettyprint">$.ajax({
+    url : ...,
 
-	success : function(){
-	    $msg = $("<p>Success saving.</p>").hide();
+    success : function(){
+        $msg = $("<p>Success saving.</p>").hide();
 
-	    $('#messages').append(
-	        $msg;
-	    );
+        $('#messages').append(
+            $msg;
+        );
 
-	    $msg.fadeIn("slow");
-	},
+        $msg.fadeIn("slow");
+    },
 
-	error : function(){
-	    ...
-	    }
+    error : function(){
+        ...
+        }
 });</code></pre>
-				</div>
-			</div> 
-			<!-- /row -->
-			<div class="row">
-					<div class="span3">
-						<section>
-							<p class="lead">Using envelope, your callbacks become much more elegant</p>
-							<p>Envlope allows you create messages that listen for events and display a message when that event is triggered.</p>
-						</section>
-					</div>
-					<div class="span5">
-						<pre><code class="prettyprint">$.ajax({
+                </div>
+            </div> 
+            <!-- /row -->
+            <div class="row">
+                    <div class="span3">
+                        <section>
+                            <p class="lead">Using envelope, your callbacks become much more elegant</p>
+                            <p>Envlope allows you create messages that listen for events and display a message when that event is triggered.</p>
+                        </section>
+                    </div>
+                    <div class="span5">
+                        <pre><code class="prettyprint">$.ajax({
 
-	url : ...,
+    url : ...,
 
-	success : function(){
-	    $.trigger('save.success') //note namespaced event
-	},
+    success : function(){
+        $.trigger('save.success')
+    },
 
-	error : function(){
-	    $.trigger('save.error');
-	}
+    error : function(){
+        $.trigger('save.error');
+    }
 });</code></pre>
-				</div>
-			</div>
-			<!-- row -->
-		</div>
-		<!-- span8 -->
-		<div class="span4">
-			<div class="row">
-				<div class="span4">
-					<h3>Try it out!</h3>
-					<div id="messages_bootstrap"></div>
-					<a href="#!" id="trigger_save">click me</a>
-				</div>
-			</div>
-			<div class="row">
-				<div class="span4">
-					<h3>Get it!</h3>
-					<ul class="unstyled">
-					  <li><a href="https://github.com/bittersweetryan/envelope.js/zipball/master">Download <strong>ZIP File</strong></a></li>
-					  <li><a href="https://github.com/bittersweetryan/envelope.js/tarball/master">Download <strong>TAR Ball</strong></a></li>
-					</ul>
-				</div>
-			</div>  
-		</div>
-		<!-- /span4 -->
-	</div>
-	<!-- /row -->
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /span8 -->
+        <div class="span4">
+            <div class="row">
+                <div class="span4">
+                    <h3>Try it out!</h3>
+                    <div id="messages_bootstrap"></div>
+                    <a href="#!" id="trigger_save">click me</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span4">
+                    <h3>Get it!</h3>
+                    <ul class="unstyled">
+                      <li><a href="https://github.com/bittersweetryan/envelope.js/zipball/master">Download <strong>ZIP File</strong></a></li>
+                      <li><a href="https://github.com/bittersweetryan/envelope.js/tarball/master">Download <strong>TAR Ball</strong></a></li>
+                    </ul>
+                </div>
+            </div>  
+        </div>
+        <!-- /span4 -->
+    </div>
+    <!-- /row -->
 </div>
 <!-- /container -->
-<div class="row">
-	<div class="container">
-		<div class="row">
-		<div class="span12">
-			<section>
-				<div class="page-header">
-					<h1 class="sunken-text-light">Setup</h1>
-				</div>
-				<p class="lead">To setup envelope, just attach it to a jQuery wrapped element and pass it some options and an array of events.</p>
-			</section>
-		</div>
-		<div class="span8">
-				<pre class="prettyprint">$("#messages").envelope(
-    {
-    	uiFramework: 'bootstrap',
-    	autoCloseTimeout: 5000
-	},
-	[
-		{
-			name: 'user.save',
-			message: "User saved.",
-			callback : function(){},
-			autoClose: true,
-			addCloseButton: true,
-			type: 'success'
-		}
-	]
-)</pre>
-			
-		</div>
-	</div>
-	<div class="row">
-		<div class="span12">
-			<section>
-				<h2 class="sunken-text-light">Options</h2>
-				<div class="span12 well">
-					<h3>Plugin Options</h3>
-					<dl class="dl-horizontal">
-						<dt>uiFramework</dt>
-						<dd>bootstrap | jqueryui | <strong>none</strong></dd>
-						<dt>autoCloseTimeout</dt>
-						<dd>ms before message automatically closes</dd>
-					</dl>
-				</div>
-				<div class="span12 well">
-					<h3>Event Options</h3>
-					<dl class="dl-horizontal">
-						<dt>name</dt>
-						<dd>name of event to listen for</dd>
-						<dt>message</dt>
-						<dd>text to display to user</dd>
-						<dt>callback</dt>
-						<dd>callback to execute when the event is triggered</dd>
-						<dt>autoClose</dt>
-						<dd>boolean value to specify weather message auto closes</dd>
-						<dt>addCloseButton</dt>
-						<dd>boolean value to specify to add close button or not</dd>
-						<dt>type</dt>
-						<dd>success | error | <strong>info</strong></dd>
-					</dl>
-				</div>
-			</section>
-		</div>
-	</div>
-	<!--
-	<div class="row">
-		<div class="span12">
-			<section>
-				<h3>Methods</h3>
-			</section>
-		</div>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <div class="page-header">
+                    <h1 class="sunken-text-light">Setup</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span4">
+                <p class="lead">To setup envelope, just attach it to a jQuery wrapped element and pass it some arguments.</p>
+                <p>The first, and optional, argument is the <a href="#plugin_options">plugin options</a>.  These specify the UI framework to use and the default timeout before auto-close elements disapear.</p>
+                <p>The second argument to pass in is an array of <a href="#event_options">event options</a>.  The event options define the behavior of the events to listen to.
+            </div>
+            <div class="span8">
+                    <pre class="prettyprint">$("#messages").envelope(
+    { //plugin options
+        uiFramework: 'bootstrap',
+        autoCloseTimeout: 5000
+    },
+    [ //array of events, with options
+        {
+            name: 'user.save',
+            message: "User saved.",
+            callback : function(){},
+            autoClose: true,
+            addCloseButton: true,
+            type: 'success'
+        }
+    ]
+);</pre>
+                
+            </div>
+    </div>
+    <!-- /row -->
+    <div class="row">
+        <div class="span12">
+            <div class="page-header">
+                <h1 class="sunken-text-light">Arguments &amp; Options</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <section>
+            <div class="span4">
+                <h3 id="plugin_options">Plugin Options</h3>
+                <p class="lead">The first, and optionl, argument that is passed into the plugin are the options for the plugin itself.</p>
+            </div>
+            <div class="span8">
+                    <dl class="dl-horizontal">
+                        <dt>uiFramework</dt>
+                        <dd>bootstrap | jqueryui | <strong>none</strong></dd>
+                        <dt>autoCloseTimeout</dt>
+                        <dd>ms before message automatically closes</dd>
+                    </dl>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <section>
+            <div class="span4">
+                <h3 id="event_options">Event Options</h3>
+                <p class="lead">The second option is an array or events that envelope should listen for.  Each even has its own set of options.
+            </div>
+            <div class="span8">
+                <dl class="dl-horizontal">
+                    <dt>name</dt>
+                    <dd>name of event to listen for</dd>
+                    <dt>message</dt>
+                    <dd>text to display to user</dd>
+                    <dt>callback</dt>
+                    <dd>callback to execute when the event is triggered</dd>
+                    <dt>autoClose</dt>
+                    <dd>boolean value to specify weather message auto closes</dd>
+                    <dt>addCloseButton</dt>
+                    <dd>boolean value to specify to add close button or not</dd>
+                    <dt>type</dt>
+                    <dd>success | error | <strong>info</strong></dd>
+                </dl>
+        </div>
+        </section>
+    </div>
+    <!--
+    <div class="row">
+        <div class="span12">
+            <section>
+                <h3>Methods</h3>
+            </section>
+        </div>
+    </div>
 -->
+    <footer>
+      <p>Hosted on GitHub Pages</p>
+    </footer>
 </div>
-		
+    
 
-	<footer>
-	  <p>Hosted on GitHub Pages</p>
-	</footer>
-	<!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
-			  <script type="text/javascript">
-			var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-			document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-		  </script>
-		  <script type="text/javascript">
-			try {
-			  var pageTracker = _gat._getTracker("UA-2411698-10");
-			pageTracker._trackPageview();
-			} catch(err) {}
-		  </script>
-	</div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-2411698-10");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
   </body>
 </html>
