@@ -29,7 +29,7 @@
 <body>
 <a href="https://github.com/bittersweetyan/envelope.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
 	<div class="row-fluid">
-		<div class="span12 header shadow">
+		<div class="span12 header shadow blue-gradient">
 			<header>
 				<div class="container">
 					<h1 class="sunken-text-dark">envelope.js</h1>
@@ -100,35 +100,95 @@
 			</div>
 		</div>
 		<div class="span4">
-			<h3>Try it out!</h3>
+			<div class="row">
+				<h3>Try it out!</h3>
+			</div>
+			<div class="row">
+				<h3>Get it!</h3>
+				<ul class="unstyled">
+				  <li><a href="https://github.com/bittersweetryan/envelope.js/zipball/master">Download <strong>ZIP File</strong></a></li>
+				  <li><a href="https://github.com/bittersweetryan/envelope.js/tarball/master">Download <strong>TAR Ball</strong></a></li>
+				</ul>
+			</div>  
 		</div>
 	</div>
-	<div class="row-fluid">
-		<div class="span3 well">
+</div>
+
+<div class="row-fluid blue-gradient">
+	<div class="container">
+		<div class="row">
+		<div class="span12">
 			<section>
-				<h3>Setup</h3>
+				<h1>Setup</h1>
+				<p>To setup envelope, just attach it to a jQuery wrapped element and pass it some options and an array of events.</p>
 			</section>
 		</div>
-		<div class="span3 well">
+		<div class="span8">
+				<pre class="prettyprint">$("#messages").envelope(
+    {
+    	uiFramework: 'bootstrap',
+    	autoCloseTimeout: 5000
+	},
+	[
+		{
+			name: 'user.save',
+			message: "User saved.",
+			callback : function(){},
+			autoClose: true,
+			addCloseButton: true,
+			type: 'success'
+		}
+	]
+)</pre>
+			
+		</div>
+	</div>
+	<div class="row">
+		<div class="span12">
 			<section>
-				<h3>Options</h3>
+				<h2>Options</h2>
+				<div class="span12 well">
+					<h3>Plugin Options</h3>
+					<dl class="dl-horizontal">
+						<dt>uiFramework</dt>
+						<dd>bootstrap | jqueryui | <strong>none</strong></dd>
+						<dt>autoCloseTimeout</dt>
+						<dd>ms before message automatically closes</dd>
+					</dl>
+				</div>
+				<div class="span12 well">
+					<h3>Event Options</h3>
+					<dl class="dl-horizontal">
+						<dt>name</dt>
+						<dd>name of event to listen for</dd>
+						<dt>message</dt>
+						<dd>text to display to user</dd>
+						<dt>callback</dt>
+						<dd>callback to execute when the event is triggered</dd>
+						<dt>autoClose</dt>
+						<dd>boolean value to specify weather message auto closes</dd>
+						<dt>addCloseButton</dt>
+						<dd>boolean value to specify to add close button or not</dd>
+						<dt>type</dt>
+						<dd>success | error | <strong>info</strong></dd>
+					</dl>
+				</div>
 			</section>
 		</div>
-		<div class="span3 well">
+	</div>
+	<!--
+	<div class="row">
+		<div class="span12">
 			<section>
 				<h3>Methods</h3>
 			</section>
 		</div>
 	</div>
-			<p class="view"><a href="https://github.com/bittersweetryan/envelope.js">View the Project on <small>bittersweetryan/envelope.js</small></a></p>
-		<ul>
-		  <li><a href="https://github.com/bittersweetryan/envelope.js/zipball/master">Download <strong>ZIP File</strong></a></li>
-		  <li><a href="https://github.com/bittersweetryan/envelope.js/tarball/master">Download <strong>TAR Ball</strong></a></li>
-		  <li><a href="https://github.com/bittersweetryan/envelope.js">View On <strong>GitHub</strong></a></li>
-		</ul>
+-->
+</div>
+		
 
 	<footer>
-	  <p>Project maintained by <a href="https://github.com/bittersweetryan">bittersweetryan</a></p>
 	  <p>Hosted on GitHub Pages</p>
 	</footer>
 	<!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
