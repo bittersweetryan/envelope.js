@@ -28,18 +28,22 @@
 </head>
 <body>
 <a href="https://github.com/bittersweetyan/envelope.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+	<!-- header -->
 	<div class="row-fluid">
 		<div class="span12 header shadow blue-gradient">
 			<header>
 				<div class="container">
 					<h1 class="sunken-text-dark">envelope.js</h1>
-					<p class="sunken-text-light">Envelope.js is a simple, event driven jQuery plugin for in app messaging designed to work with popular UI frameworks as well as without.</p>
+					<h3>Envelope.js is a simple, event driven jQuery plugin for in app messaging designed to work with or without popular UI frameworks.</h3>
 				</div>
 			</header>
 		</div>
 	</div>
+	<!-- /header -->
+	<!-- container -->
 	<div class="container">
-		<div class="row-fluid">
+		<!-- welcome -->
+		<div class="row show-grid">
 			<div class="span12">
 				<section id="intro">
 				<div class="page-header">
@@ -48,16 +52,18 @@
 				</section>
 			</div>
 		</div>
-		<div class="row-fluid">
+		<!-- /welcome -->
+		<!-- intro -->
+		<div class="row">
 			<div class="span8">
-				<div class="row-fluid">
-					<div class="span5">
+				<div class="row">
+					<div class="span3">
 						<section>
 							<p class="lead">Have you ever written code that looks like this?</p>
 							<p>If so, you quickly find out that you are writing a lot of display code in your callbacks, that its hard to reuse this code, and its hard to maintain this code.</P>
 						</section>
 					</div>
-					<div class="span7">
+					<div class="span5">
 						<pre><code class="prettyprint">$.ajax({
 	url : ...,
 
@@ -76,14 +82,16 @@
 	    }
 });</code></pre>
 				</div>
-			</div>
-			<div class="row-fluid">
-					<div class="span5">
+			</div> 
+			<!-- /row -->
+			<div class="row">
+					<div class="span3">
 						<section>
 							<p class="lead">Using envelope, your callbacks become much more elegant</p>
+							<p>Envlope allows you create messages that listen for events and display a message when that event is triggered.</p>
 						</section>
 					</div>
-					<div class="span7">
+					<div class="span5">
 						<pre><code class="prettyprint">$.ajax({
 
 	url : ...,
@@ -98,25 +106,33 @@
 });</code></pre>
 				</div>
 			</div>
+			<!-- row -->
 		</div>
+		<!-- span8 -->
 		<div class="span4">
 			<div class="row">
-				<h3>Try it out!</h3>
-				<div id="messages_bootstrap"></div>
-				<a href="#!" id="trigger_save">click me</a>
+				<div class="span4">
+					<h3>Try it out!</h3>
+					<div id="messages_bootstrap"></div>
+					<a href="#!" id="trigger_save">click me</a>
+				</div>
 			</div>
 			<div class="row">
-				<h3>Get it!</h3>
-				<ul class="unstyled">
-				  <li><a href="https://github.com/bittersweetryan/envelope.js/zipball/master">Download <strong>ZIP File</strong></a></li>
-				  <li><a href="https://github.com/bittersweetryan/envelope.js/tarball/master">Download <strong>TAR Ball</strong></a></li>
-				</ul>
+				<div class="span4">
+					<h3>Get it!</h3>
+					<ul class="unstyled">
+					  <li><a href="https://github.com/bittersweetryan/envelope.js/zipball/master">Download <strong>ZIP File</strong></a></li>
+					  <li><a href="https://github.com/bittersweetryan/envelope.js/tarball/master">Download <strong>TAR Ball</strong></a></li>
+					</ul>
+				</div>
 			</div>  
 		</div>
+		<!-- /span4 -->
 	</div>
+	<!-- /row -->
 </div>
-
-<div class="row-fluid">
+<!-- /container -->
+<div class="row">
 	<div class="container">
 		<div class="row">
 		<div class="span12">

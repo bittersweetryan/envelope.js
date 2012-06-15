@@ -1,17 +1,18 @@
 header h1{
   color: #ffffff;
-  text-shadow: -1px -1px 0 rgb(50,50,50);
+  font-size: 4em;
+  line-height: 1.5em;
 }
 
 .header{
-
+  height: 11em;
   margin-bottom: 15px;
 }
 
 .shadow{
-  -webkit-box-shadow: 0px 3px 8px rgba(50, 50, 50, 0.75);
-  -moz-box-shadow:    0px 3px 8px rgba(50, 50, 50, 0.75);
-  box-shadow:         0px 3px 8px rgba(50, 50, 50, 0.75);
+  -webkit-box-shadow: 0px 5px 8px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow:    0px 5px 8px rgba(50, 50, 50, 0.75);
+  box-shadow:         0px 5px 8px rgba(50, 50, 50, 0.75);
 }
 
 .sunken-text-light{
@@ -19,7 +20,7 @@ header h1{
 }
 
 .sunken-text-dark{
-  text-shadow: -1px -1px 0 rgb(50,50,50); 
+  text-shadow: -2px -2px 2px rgb(50,50,50); 
 }
 
 .blue-gradient{
