@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -7,15 +7,15 @@
 
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="stylesheets/styles.css">
-	<!-- <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/flick/jquery-ui.css"> -->
-	<!-- <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.min.css"> -->
+	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/flick/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="stylesheets/prettify.css">
 
 	<!-- Libraries, etc -->
 	<script src="javascripts/prettify.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<!-- <script src="javascripts/bootstrap.min.js"></script> -->
-	<!--<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>-->
+	<script src="javascripts/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 	<script src="javascripts/envelope.jquery-0.1.js"></script>
 
 	<!-- envelope -->
@@ -27,22 +27,38 @@
 	<![endif]-->
 </head>
 <body>
-	<div class="wrapper">
-<header>
-		<h1>Envelope.js</h1>
-		<p>Envelope is a simple, event driven jQuery plugin for in app messaging designed to work with popular UI frameworks as well as without.  See a simple demo here:  http://jsfiddle.net/bittersweetryan/GbAfk/</p>
-		<p class="view"><a href="https://github.com/bittersweetryan/envelope.js">View the Project on <small>bittersweetryan/envelope.js</small></a></p>
-		<ul>
-		  <li><a href="https://github.com/bittersweetryan/envelope.js/zipball/master">Download <strong>ZIP File</strong></a></li>
-		  <li><a href="https://github.com/bittersweetryan/envelope.js/tarball/master">Download <strong>TAR Ball</strong></a></li>
-		  <li><a href="https://github.com/bittersweetryan/envelope.js">View On <strong>GitHub</strong></a></li>
-		</ul>
-</header>
-	<section id="intro">
-		<h3>Decouple your user feedback messages from the functions that generate them.</h3>
-
-		<p>Have you ever written code that looks like this?
-			<pre><code class="prettyprint">$.ajax({
+<a href="https://github.com/bittersweetyan/envelope.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+	<div class="row-fluid">
+		<div class="span12 header shadow">
+			<header>
+				<div class="container">
+					<h1 class="sunken-text-dark">envelope.js</h1>
+					<p class="sunken-text-light">Envelope.js is a simple, event driven jQuery plugin for in app messaging designed to work with popular UI frameworks as well as without.</p>
+				</div>
+			</header>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row-fluid">
+			<div class="span12">
+				<section id="intro">
+				<div class="page-header">
+					<h3>Decouple your user feedback messages from the functions that generate them.</h3>
+				</div>
+				</section>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span8">
+				<div class="row-fluid">
+					<div class="span5">
+						<section>
+							<p class="lead">Have you ever written code that looks like this?</p>
+							<p>If so, you quickly find out that you are writing a lot of display code in your callbacks, that its hard to reuse this code, and its hard to maintain this code.</P>
+						</section>
+					</div>
+					<div class="span7">
+						<pre><code class="prettyprint">$.ajax({
 	url : ...,
 
 	success : function(){
@@ -59,12 +75,16 @@
 	    ...
 	    }
 });</code></pre>
-
-		If so, you quickly find out that you are writing a lot of display code in your callbacks, that its hard to reuse this code, and its hard to maintain this code.  
-		</p>
-
-		<p>Using envelope, your callbacks become much more elegant:
-			<pre><code class="prettyprint">$.ajax({
+				</div>
+			</div>
+			<div class="row-fluid">
+					<div class="span5">
+						<section>
+							<p class="lead">Using envelope, your callbacks become much more elegant</p>
+						</section>
+					</div>
+					<div class="span7">
+						<pre><code class="prettyprint">$.ajax({
 
 	url : ...,
 
@@ -75,14 +95,37 @@
 	error : function(){
 	    $.trigger('save.error');
 	}
-});</pre></code>
-		</p>
-		<h3>Lets take a look at it in action</h3>
-		<div id="messages_bootstrap"></div>
-		<div id="messages_ui"></div>
-		<div id="messages_default"></div>
-		<a href="#" id="trigger_save">tigger save event</a>
-	</section>
+});</code></pre>
+				</div>
+			</div>
+		</div>
+		<div class="span4">
+			<h3>Try it out!</h3>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span3 well">
+			<section>
+				<h3>Setup</h3>
+			</section>
+		</div>
+		<div class="span3 well">
+			<section>
+				<h3>Options</h3>
+			</section>
+		</div>
+		<div class="span3 well">
+			<section>
+				<h3>Methods</h3>
+			</section>
+		</div>
+	</div>
+			<p class="view"><a href="https://github.com/bittersweetryan/envelope.js">View the Project on <small>bittersweetryan/envelope.js</small></a></p>
+		<ul>
+		  <li><a href="https://github.com/bittersweetryan/envelope.js/zipball/master">Download <strong>ZIP File</strong></a></li>
+		  <li><a href="https://github.com/bittersweetryan/envelope.js/tarball/master">Download <strong>TAR Ball</strong></a></li>
+		  <li><a href="https://github.com/bittersweetryan/envelope.js">View On <strong>GitHub</strong></a></li>
+		</ul>
 
 	<footer>
 	  <p>Project maintained by <a href="https://github.com/bittersweetryan">bittersweetryan</a></p>
@@ -99,6 +142,6 @@
 			pageTracker._trackPageview();
 			} catch(err) {}
 		  </script>
-
+	</div>
   </body>
 </html>
