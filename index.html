@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/flick/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/prettify.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/envelope.css">
 
     <!-- Libraries, etc -->
     <script src="javascripts/prettify.js"></script>
@@ -68,19 +69,20 @@
     url : ...,
 
     success : function(){
-        $msg = $("<p>Success saving.</p>").hide();
+        $msg = $(&quot;&lt;p&gt;Success saving.&lt;/p&gt;&quot;)
+               .hide();
 
-        $('#messages').append(
+        $(&#39;#messages&#39;).append(
             $msg;
         );
 
-        $msg.fadeIn("slow");
+        $msg.fadeIn(&quot;slow&quot;);
     },
 
     error : function(){
         ...
         }
-});</code></pre>
+})</code></pre>
                 </div>
             </div> 
             <!-- /row -->
@@ -97,11 +99,11 @@
     url : ...,
 
     success : function(){
-        $.trigger('save.success')
+        $.trigger(&#39;save.success&#39;)
     },
 
     error : function(){
-        $.trigger('save.error');
+        $.trigger(&#39;save.error&#39;);
     }
 });</code></pre>
                 </div>
@@ -114,7 +116,47 @@
                 <div class="span4">
                     <h3>Try it out!</h3>
                     <div id="messages_bootstrap"></div>
-                    <a href="#!" id="trigger_save">click me</a>
+                    <div id="messages_jqueryui"></div>
+                    <div id="messages_default"></div>
+                    <form class="form-horizontal">
+                          <div class="control-group">
+                            <label class="control-label">UI Framework</label>
+                            <div class="controls">
+                              <label class="radio">
+                                <input type="radio" name="uiFramework" id="uiFramework" value="bootstrap" checked="true">
+                                Twitter Bootstrap
+                              </label>
+                              <label class="radio">
+                                <input type="radio" name="uiFramework" id="uiFramework" value="jqueryui">
+                                jQueryUI
+                              </label>
+                              <label class="radio">
+                                <input type="radio" name="uiFramework" id="uiFramework" value="default">
+                                Default
+                              </label>
+                            </div>
+                          </div>
+                          <div class="control-group">
+                            <label class="control-label">Event Type</label>
+                            <div class="controls">
+                              <label class="radio">
+                                <input type="radio" name="eventType" id="eventType" value="success" checked="true">
+                                Success
+                              </label>
+                              <label class="radio">
+                                <input type="radio" name="eventType" id="eventType" value="error">
+                                Error
+                              </label>
+                              <label class="radio">
+                                <input type="radio" name="eventType" id="eventType" value="info">
+                                None
+                              </label>
+                            </div>
+                          </div>
+                          <div class="form-actions">
+                            <a href="#!" id="generateEvent" class="btn">Generate Event</a>
+                          </div>
+                    </form>
                 </div>
             </div>
             <div class="row">
@@ -147,19 +189,19 @@
                 <p>The second argument to pass in is an array of <a href="#event_options">event options</a>.  The event options define the behavior of the events to listen to.
             </div>
             <div class="span8">
-                    <pre class="prettyprint">$("#messages").envelope(
+                    <pre class="prettyprint">$(&quot;#messages&quot;).envelope(
     { //plugin options
-        uiFramework: 'bootstrap',
+        uiFramework: &#39;bootstrap&#39;,
         autoCloseTimeout: 5000
     },
     [ //array of events, with options
         {
-            name: 'user.save',
-            message: "User saved.",
+            name: &#39;user.save&#39;,
+            message: &quot;User saved.&quot;,
             callback : function(){},
             autoClose: true,
             addCloseButton: true,
-            type: 'success'
+            type: &#39;success&#39;
         }
     ]
 );</pre>
