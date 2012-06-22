@@ -25,13 +25,14 @@
 		});
 		
 		$("#messages").envelope(
-			{uiFramework : 'jqueryui'},
+			{uiFramework: 'none'},
 			[
 				{
 					name : 'test.success',
 					message: 'Success saving test.',
 					type: 'success',
-					callback : function(){console.log("Success!");}
+					callback : function(){console.log("Success!");},
+					addCloseButton: true
 				},
 				{
 					name : 'test.error',

@@ -43,8 +43,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 		bootstrapElem = $('<div class="alert"><span></span></div>'),
 
-		defaultElem = $('<div></div>'),
-
 		jQueryUISuccessClass = 'ui-icon-info',
 
 		jQueryUIErrorClass = 'ui-icon-error',
@@ -61,7 +59,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 		defaultElem = $('<div class="env_container"><p class="sunkenText">Hello World</p></div>'),
 
-		defaultCloseButton = $('<div class="close">x</div>'),
+		defaultCloseButton = $('<div class="close sunkenText">x</div>'),
 
 		defaultSuccessClass = 'success',
 
@@ -128,10 +126,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		function addAlert(type,message,addCloseButton){
 			var newElement;
 
-			if(options.uiFramework === 'jqueryui'){
+			if(options.uiFramework.search(new RegExp('jqueryui','i')) === 0){
 				newElement = addAlertTojQueryUI.apply(this,$.makeArray(arguments));
 			}
-			else if(options.uiFramework === 'bootstrap'){
+			else if(options.uiFramework.search(new RegExp('bootstrap','i')) === 0){
 				newElement = addAlertToBootstrap.apply(this,$.makeArray(arguments));
 			}
 			else{
