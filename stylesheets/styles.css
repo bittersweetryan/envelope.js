@@ -17,11 +17,11 @@ header h1{
 
 .sunken-text-dark{
   background-color: #000000;
-        -webkit-background-clip: text;
+  -webkit-background-clip: text;
   -moz-background-clip: text;
   background-clip: text;
-        color: transparent;
-        text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
+  color: transparent;
+  text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
 }
 
 .blue-gradient{
