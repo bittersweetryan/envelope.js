@@ -15,12 +15,13 @@ header h1{
   box-shadow:         0px 6px 10px rgba(50, 50, 50, 0.75);
 }
 
-.sunken-text-light{
-  text-shadow: 1px 1px 0 rgba(155,155,155,0.75);
-}
-
 .sunken-text-dark{
-  text-shadow: -2px -2px -2px rgba(50,50,50,0.75); 
+  background-color: #000000;
+        -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+        color: transparent;
+        text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
 }
 
 .blue-gradient{
