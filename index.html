@@ -1,15 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<style>
+		input{
+			display: block;
+			width: 150px;
+			height: 25px;
+			margin: 0px 0px 8px 0px;
+		}
+	</style>
 	<title></title>
+	<link rel="stylesheet" type="text/css" href="envelope.css">
+	<!-- <link rel="stylesheet" type="text/css" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/themes/smoothness/jquery-ui.css"> -->
+
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.0.3/bootstrap.min.js"></script>
 	<script type="text/javascript" src="envelope.jquery-0.1.js"></script>
-</head>
+	<script type="text/javascript">
+		$(function(){
+			
+		$("#successButton").on('click',function(){
+			$(this).trigger('test.success');
+		});
 
+		$("#errorButton").on('click',function(){
+			$(this).trigger('test.error');
+		});
+		
+		$("#untypedButton").on('click',function(){
+			$(this).trigger('test.untyped');
+		});
+		
+		$("#messages").envelope(
+			{uiFramework: 'none'},
+			[
+				{
+					name : 'test.success',
+					message: 'Success saving test.',
+					type: 'success',
+					callback : function(){console.log("Success!");},
+					addCloseButton: true
+				},
+				{
+					name : 'test.error',
+					message : 'Error saving test.',
+					type : 'error',
+					callback : function(){console.log("Oh Noes!");}
+				},
+				{
+					name : 'test.untyped',
+					message : 'Untyped saving test.',
+					callback : function(){console.log("What do do?");}
+				}
+			]
+		);
+	});
+	</script>
+</head>
 <body>
-	<div id="msgs"></div>
-	<section><h2>Envelope.js</h2></section>
-	<p>Envelope.js is a event based plugin for showing messages to users.</p>
+	<div id="content">
+		<div id="section">
+			Click a button to trigger an event.  View the readme to see how to use envelope.  View the <a href="http://bittersweetryan.github.com/envelope.js">envelope website</a> for even more information.
+			<div id="messages"></div>
+			<input type="button" id="successButton" value="Trigger Success">
+			<input type="button" id="errorButton" value="Trigger Error">
+			<input type="button" id="untypedButton" value="Trigger Untyped">
+		</div>
 </body>
 </html>
