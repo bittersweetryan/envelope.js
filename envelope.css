@@ -1,13 +1,14 @@
 .env_container {
-    vertical-align:middle;
-    height: 30px;
+    vertical-align: middle;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
-    padding: .2em;
+    padding: 8px 35px 8px 14px;
     background-color: #000000;
+    position:relative;
     max-width: 500px;
-   background: rgb(176,212,227); /* Old browsers */
+    font-family: Georgia, Helvetica, Arial, sans-serif;
+	background: rgb(176,212,227); /* Old browsers */
 	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
 	background: background: rgb(204,204,204); /* Old browsers */
 	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
@@ -19,13 +20,11 @@
 	background: -ms-linear-gradient(top,  rgba(204,204,204,1) 0%,rgba(125,126,125,1) 100%); /* IE10+ */
 	background: linear-gradient(top,  rgba(204,204,204,1) 0%,rgba(125,126,125,1) 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cccccc', endColorstr='#7d7e7d',GradientType=0 ); /* IE6-8 */
-
 }
-    
+
 .env_container p{
     color: rgb(44,44,44);
-    display:block;
-    text-align:center;
+    text-align: center;
 }
 
 .sunkenText{
@@ -58,4 +57,13 @@
 	background: linear-gradient(top,  rgba(255,163,155,1) 0%,rgba(206,61,61,1) 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa39b', endColorstr='#ce3d3d',GradientType=0 ); /* IE6-8 */
 
+}
+
+.env_container div.close{
+   position: absolute;
+    top: 8px;
+    right: 8px;
+    opacity: .50;
+    font-weight: bold;
+    color: rgb(44,44,44);
 }​
