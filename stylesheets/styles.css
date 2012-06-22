@@ -16,7 +16,7 @@ header h1{
 }
 
 .sunken-text-dark{
-  background-color: #000000;
+  background-color: rgb(66,66,66);
   -webkit-background-clip: text;
   -moz-background-clip: text;
   background-clip: text;
