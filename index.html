@@ -35,7 +35,7 @@
             <header>
                 <div class="container">
                     <h1 class="sunken-text-dark">envelope.js</h1>
-                    <h3>Envelope.js is a simple, event driven jQuery plugin for in app messaging designed to work with or without popular UI frameworks.</h3>
+                    <h3 class="sunken-text-light">Envelope.js is a simple, event driven jQuery plugin for in app messaging designed to work with or without popular UI frameworks.</h3>
                 </div>
             </header>
         </div>
@@ -46,11 +46,11 @@
         <!-- welcome -->
         <div class="row show-grid">
             <div class="span12">
-                <section id="intro">
                 <div class="page-header">
-                    <h3>Decouple your user feedback messages from the functions that generate them.</h3>
+                    <section id="intro">
+                        <h2>Decouple your user feedback messages from the functions that generate them.</h2>
+                    </section>
                 </div>
-                </section>
             </div>
         </div>
         <!-- /welcome -->
@@ -158,25 +158,17 @@
                           </div>
                     </form>
                 </div>
-            </div>
+            </div>  
             <div class="row">
                 <div class="span4">
-                    <h3 class="page-header">Get it!</h3>
+                    <h3 class="page-header" id="getIt">Get it!</h3>
                     <ul class="unstyled">
+                      <li><a href="https://github.com/bittersweetryan/envelope.js">View on GitHub</a></li>
                       <li><a href="https://github.com/bittersweetryan/envelope.js/zipball/master">Download <strong>ZIP File</strong></a></li>
                       <li><a href="https://github.com/bittersweetryan/envelope.js/tarball/master">Download <strong>TAR Ball</strong></a></li>
                     </ul>
                 </div>
             </div>
-             <div class="row">
-                <div class="span4">
-                    <h3 class="page-header">Use it!</h3>
-                    <ol>
-                      <li>Download it using the links above.</li>
-                      <li>Use your current UI framework or import envelope.css to use the default styles</li>
-                    </ol>
-                </div>
-            </div>    
         </div>
         <!-- /span4 -->
     </div>
@@ -184,6 +176,24 @@
 </div>
 <!-- /container -->
     <div class="container">
+        <div class="row">
+            <div class="span12">
+                <div class="page-header">
+                    <h1 class="sunken-text-light">Getting Started</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span12">
+            <p>Getting started is easy:</p>
+                <ol>
+                  <li>Download the code using the links in the <a href="#getIt">Get it!</a> section or visit the <a href="https://github.com/bittersweetryan/envelope.js">GitHub</a> page.</li>
+                  <li>If you want to use the default styles add the envelope.css stylesheet to your page, if you are using jQueryUI or Twitter's Bootstrap you don't have to do anything envelope will use the styles included in those frameworks.</li>
+                  <li>Attach envelope to a DOM element and pass it some events to listen to.</li>
+                  <li>Trigger events to display messages.</li>
+                </ol>
+            </div>
+        </div>  
         <div class="row">
             <div class="span12">
                 <div class="page-header">
