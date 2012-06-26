@@ -275,7 +275,46 @@
                 </dl>
         </div>
         </section>
+    </div> 
+    <!-- /row -->
+    <div class="row">
+        <div class="span12">
+            <div class="page-header">
+                <h1 class="sunken-text-light">Methods</h1>
+            </div>
+        </div>
     </div>
+    <div class="row">
+        <section>
+            <div class="span4">
+                <h3 id="plugin_options">add(event_options)</h3>
+                <p class="lead">You can add events to the plugin after initialization by using the add method.</p>
+            </div>
+            <div class="span8">
+                <pre class="prettyprint">$("#messages").envelope('add',
+    {
+        name : 'test.success',
+        message: 'Success saving test.',
+        type: 'success',
+        addCloseButton : true,
+        autoClose : true
+    }
+);</pre>
+            </div> 
+        </section>
+    </div>
+    <div class="row">
+        <section>
+            <div class="span4">
+                <h3 id="plugin_options">remove(event_name)</h3>
+                <p class="lead">You can remove events to the plugin after initialization by using the remove method.</p>
+            </div>
+            <div class="span8">
+                <pre class="prettyprint">$("#messages").envelope('remove','test.success');</pre>
+            </div> 
+        </section>
+    </div>
+    <!-- end row -->
     <!--
     <div class="row">
         <div class="span12">
