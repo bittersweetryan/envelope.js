@@ -46,6 +46,14 @@ $.ajax({
 
 #Using
 
+###Requirements
+
+ * jQuery 1.7 or greater
+ * If you are using Twitter Bootstrap's alerts you must have the boostrap stylesheet included on the page
+ * If you are using jQueryUI's alerts you must have the jQueryUI stylesheet included on the page
+
+###Setup
+
 In order to use envelope, you attach it to a container and pass it options and events.
 
 ```js
@@ -75,18 +83,16 @@ $("#messages").envelope(
 );
 ```
 
-###Requirements
 
- * jQuery 1.7 or greater
 
-###Options
+###Envelop Options
 
 The following options are valid for envelope: 
 
 uiFramework : 'jqueryui | bootstrap | none (default)'
 autoCloseTimeout : _milliseconds before autoClose_
 
-###events
+###Event Parameter
 
 Events is an array of objects with the following properties, all are optional:
  
@@ -97,16 +103,32 @@ Events is an array of objects with the following properties, all are optional:
  * addCloseButton : true | false (default)
  * callback : function(){}
 
-###Methods (not yet implemented)
+###Methods
 
-_add(options)_
+####add(event options)
 
-_remove(options)_
+You can add events to envelope after initialization by using the _add_ method.  
 
-_modify(options)_
+```js
+$("#messages").envelope('add',
+	{
+		name : 'test.success',
+		message: 'Success saving test.',
+		type: 'success',
+		addCloseButton : true,
+		autoClose : true
+	}
+);
+```
 
+####remove(eventName)
+
+You can remove events after initialization by using the _remove_ method.
+
+```js
+$("#messages").envelope('remove','test.success');
+```
 
 ##TODO
  * append additional text to the message triggered
- * add events after initialization
- * remove events
+ * add a add one

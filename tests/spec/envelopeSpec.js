@@ -132,6 +132,33 @@ describe("jQueryUI",function(){
 			});
 
 		});
+
+		it("Should remove an event",function(){
+				
+			runs(function(){
+				$("#messages").envelope('add',
+					{
+						name : 'test.success',
+						message: 'Success saving test.',
+						type: 'success',
+						addCloseButton : true,
+						autoClose : true
+					}
+				);
+			});
+			
+			runs(function(){
+				$("#messages").envelope('remove','test.success');
+			});
+
+			runs ( function(){
+				$("#successButton").trigger('test.success');
+			});
+			
+			runs ( function(){
+				expect($("#messages").find("span:first")).not.toBe(".ui-icon-info");
+			});
+		});
 	});
 
 	describe("Envlope should respond to options properly for jQueryUI.",function(){
@@ -338,7 +365,7 @@ describe("Bootstrap",function(){
 			runs ( function(){
 				expect($("#messages").find("div")).not.toBe(".alert-success");
 			});
-		}); 
+		});
 	});
 
 	describe("Envlope should respond to options properly for bootstrap.",function(){
@@ -558,6 +585,33 @@ describe("Default",function(){
 				expect($("#messages").find("div")).toBe(".success");
 			});
 
+		});
+
+		it("Should remove an event",function(){
+				
+			runs(function(){
+				$("#messages").envelope('add',
+					{
+						name : 'test.success',
+						message: 'Success saving test.',
+						type: 'success',
+						addCloseButton : true,
+						autoClose : true
+					}
+				);
+			});
+			
+			runs(function(){
+				$("#messages").envelope('remove','test.success');
+			});
+
+			runs ( function(){
+				$("#successButton").trigger('test.success');
+			});
+			
+			runs ( function(){
+				expect($("#messages").find("div")).not.toBe(".success");
+			});
 		});
 	});
 });
