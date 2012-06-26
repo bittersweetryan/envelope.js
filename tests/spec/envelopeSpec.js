@@ -303,7 +303,7 @@ describe("Bootstrap",function(){
 				}
 			);
 
-				runs ( function(){
+			runs ( function(){
 				$("#successButton").trigger('test.success');
 			});
 			
@@ -312,6 +312,33 @@ describe("Bootstrap",function(){
 			});
 
 		});
+
+		it("Should remove an event",function(){
+				
+			runs(function(){
+				$("#messages").envelope('add',
+					{
+						name : 'test.success',
+						message: 'Success saving test.',
+						type: 'success',
+						addCloseButton : true,
+						autoClose : true
+					}
+				);
+			});
+			
+			runs(function(){
+				$("#messages").envelope('remove','test.success');
+			});
+
+			runs ( function(){
+				$("#successButton").trigger('test.success');
+			});
+			
+			runs ( function(){
+				expect($("#messages").find("div")).not.toBe(".alert-success");
+			});
+		}); 
 	});
 
 	describe("Envlope should respond to options properly for bootstrap.",function(){

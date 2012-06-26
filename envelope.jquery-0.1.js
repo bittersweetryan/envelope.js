@@ -12,9 +12,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 	//additional methods
 	var _methods = {
-		remove : function(eventName){
-
-		},
 		add : function(options){
 			var newElement,
 				self = this;
@@ -55,6 +52,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			});
 
 			return this;
+		},
+
+		remove : function(method){
+			return $(document).off(method);
 		}
 	};
 	

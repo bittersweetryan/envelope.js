@@ -75,6 +75,10 @@ $("#messages").envelope(
 );
 ```
 
+###Requirements
+
+ * jQuery 1.7 or greater
+
 ###Options
 
 The following options are valid for envelope: 
