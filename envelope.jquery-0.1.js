@@ -19,7 +19,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			var newElement,
 				self = this;
 
-			console.log(this);
+			options = $.extend({},_eventDefaults,options);
+
 			if(_options.uiFramework.search(new RegExp('jqueryui','i')) === 0){
 				newElement = addAlertTojQueryUI(options.type,options.message,options.addCloseButton);
 			}
@@ -34,7 +35,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 			$(document).on(options.name,function(){
 				self.append(newElement);
-				
+
 				newElement.fadeIn('slow');
 
 				if(options.autoClose){
@@ -52,6 +53,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 					options.callback();
 				}
 			});
+
+			return this;
 		}
 	};
 	
@@ -184,9 +187,16 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 	//main plugin method
 	$.fn.envelope = function(options,events){
-		var $this = $(this);
+		var $this = $(this),
+			method;
+
 		//if options is an array that means user didn't supply any options and starts with events
-		if($.isArray(options)){
+		if(typeof options === 'string' && _methods[options]){
+			method = options;
+
+			return _methods[method].apply($this,Array.prototype.slice.call(arguments,1));
+		}
+		else if($.isArray(options)){
 			events = options;
 		}
 
@@ -202,11 +212,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			//loop through the events
 			$.each(_events,function(index,value){
 
-				var eventOptions = $.extend({},_eventDefaults,value);
-
 				//make sure the options has a name
-				if(typeof eventOptions === 'object' && eventOptions.hasOwnProperty('name')){
-					_methods.add.call($this,eventOptions);
+				if(typeof value === 'object' && value.hasOwnProperty('name')){
+					_methods.add.call($this,value);
 				}
 			});
 		}
