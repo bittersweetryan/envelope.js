@@ -132,3 +132,8 @@ $("#messages").envelope('remove','test.success');
 ##TODO
  * append additional text to the message triggered
  * add a add one
+ * Trigger events
+     * show
+     * hide
+     * autoHide
+ * Make sure callback runs after event, use deferreds? 
