@@ -616,4 +616,33 @@ describe("Default",function(){
 	});
 });
 
+describe("UI Framework independent stuff.",function(){
+
+	beforeEach(function(){
+		loadFixtures('envelopeFixture_default.html');
+
+		$("#messages").envelope(
+			[
+				{
+					name : 'test.success',
+					message: 'Success saving test.',
+					type: 'success',
+					addCloseButton : true,
+					autoClose : true
+				}
+			]
+		);
+	});
+
+	it("Should append a message when an event is triggered.",function(){
+		runs ( function(){
+			$("#successButton").trigger('test.success','New text.');
+		});
+		
+		runs ( function(){
+			expect($("#messages").find('.message')).toHaveText("Success saving test. New text.");
+		});
+	});
+});
+
 
