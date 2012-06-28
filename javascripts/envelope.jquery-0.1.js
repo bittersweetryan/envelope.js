@@ -12,16 +12,66 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 	//additional methods
 	var _methods = {
-		remove : function(eventName){
-
-		},
 		add : function(options){
+			var newElement,
+				self = this;
 
+			options = $.extend({},_eventDefaults,options);
+
+			if(_options.uiFramework.search(new RegExp('jqueryui','i')) === 0){
+				newElement = addAlertTojQueryUI(options.type,options.message,options.addCloseButton);
+			}
+			else if(_options.uiFramework.search(new RegExp('bootstrap','i')) === 0){
+				newElement = addAlertToBootstrap(options.type,options.message,options.addCloseButton);
+			}
+			else{
+				newElement = addAlertToDefault(options.type,options.message,options.addCloseButton);
+			}
+				
+			newElement.hide();
+
+			$(document).on(options.name,function(e,messageToAppend){
+
+				if(messageToAppend){
+					var $msg = newElement.find(".message");
+
+					$msg.html(
+						$msg.html() + ' ' + messageToAppend
+					);
+				}
+
+				self.append(newElement);
+
+				newElement.fadeIn('slow');
+
+				if(options.autoClose){
+
+					var t = setTimeout(function(){
+						newElement.fadeOut('slow',function(){
+							$(this).remove();
+						});
+
+						clearTimeout(t);
+					},_options.autoCloseTimeout);
+				}
+
+				if(options.callback && typeof options.callback === 'function'){
+					options.callback();
+				}
+			});
+
+			return this;
+		},
+
+		remove : function(method){
+			return $(document).off(method);
 		}
 	};
 	
 	//events objects to hold events this will respond to
-	var _events = {};
+	var _events = {},
+		_element,
+		_options;
 
 	//plugin defaults
 	var _defaults = {
@@ -39,9 +89,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 	//vars for creating UI elements
 	var jQueryUIElem = $('<p><span class="ui-icon" style="float: left; margin-right: .3em;"></span>' +
-						'<span></span></p>'),
+						'<span class="message"></span></p>'),
 
-		bootstrapElem = $('<div class="alert"><span></span></div>'),
+		bootstrapElem = $('<div class="alert"><span class="message"></span></div>'),
 
 		jQueryUISuccessClass = 'ui-icon-info',
 
@@ -57,7 +107,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 		jQueryUICloseButton = '<a href="#" class="ui-dialog-titlebar-close ui-corner-all" role="button"><span class="ui-icon ui-icon-closethick" style="float: right">close</span></a>',
 
-		defaultElem = $('<div class="env_container"><p class="sunkenText">Hello World</p></div>'),
+		defaultElem = $('<div class="env_container"><span class="message">Hello World</span></div>'),
 
 		defaultCloseButton = $('<div class="close">x</div>'),
 
@@ -65,13 +115,98 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 		defaultErrorClass = 'error';
 
+	function addAlertTojQueryUI(type,message,addCloseButton){
+		var newElement = jQueryUIElem.clone();
+		var firstSpan = newElement.find("span:first");
+
+		if(type === 'error'){
+			firstSpan.addClass(jQueryUIErrorClass);
+		}
+		else{
+			firstSpan.addClass(jQueryUISuccessClass);
+		}
+
+		if(addCloseButton){
+			var closeButton = $(jQueryUICloseButton).clone();
+
+			closeButton.on('click',function(){
+				$(this).parent().parent().fadeOut('slow');
+			});
+
+			newElement.append(jQueryUICloseButton);
+		}
+
+		newElement.find('span.message').html(message);
+
+		return newElement;
+	}
+
+	function addAlertToDefault(type,message,addCloseButton){
+
+		var newElement = defaultElem.clone();
+
+		if(type === 'error'){
+			newElement.addClass(defaultErrorClass);
+		}
+		else if(type === 'success'){
+			newElement.addClass(defaultSuccessClass);
+		}
+
+		if(addCloseButton){
+			var closeButton = defaultCloseButton.clone();
+
+			closeButton.on('click',function(){
+				$(this).parent().fadeOut('slow');
+			});
+
+			newElement.append(closeButton);
+		}
+
+		newElement.find('span.message').html(message);
+
+		return newElement;
+	}
+
+	function addAlertToBootstrap(type,message,addCloseButton){
+		var newElement = bootstrapElem.clone();
+
+		if(type === 'error'){
+			newElement.addClass(bootstrapErrorClass);
+		}
+		else if(type === 'success'){
+			newElement.addClass(bootstrapSuccessClass);
+		}
+		else{
+			newElement.addClass(bootstrapInfoClass);
+		}
+		
+		if(addCloseButton){
+			var closeButton = $(bootstrapCloseButton).clone();
+
+			closeButton.on('click',function(){
+				$(this).parent().fadeOut('slow');
+			});
+
+			newElement.append(closeButton);
+		}
+
+		newElement.find('span.message').html(message);
+
+		return newElement;
+	}
 
 	//main plugin method
 	$.fn.envelope = function(options,events){
-		var $this = $(this);
+		var $this = $(this),
+			method;
 
 		//if options is an array that means user didn't supply any options and starts with events
-		if($.isArray(options)){
+		if(typeof options === 'string' && _methods[options]){
+			method = options;
+
+			return _methods[method].apply($this,Array.prototype.slice.call(arguments,1));
+		}
+		else if($.isArray(options)){
 			events = options;
 		}
 
@@ -79,150 +214,21 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		
 		//if options is an object extend it with the defaults
 		if(typeof options === 'object'){
-			options = $.extend({},_defaults, options);
+			_options = $.extend({},_defaults, options);
 		}
 		
-
 		//make sure events is an array
 		if($.isArray(events)){
 			//loop through the events
 			$.each(_events,function(index,value){
 
-				var eventOptions = $.extend({},_eventDefaults,value);
-
 				//make sure the options has a name
-				if(typeof eventOptions === 'object' && eventOptions.hasOwnProperty('name')){
-
-					var alert = addAlert(eventOptions.type,
-							eventOptions.message,
-							eventOptions.addCloseButton,
-							eventOptions.callback);
-					
-					$(document).on(eventOptions.name,function(){
-
-						$this.append(alert);
-
-						alert.fadeIn('slow');
-
-						if(eventOptions.autoClose){
-
-							var t = setTimeout(function(){
-								alert.fadeOut('slow',function(){
-									$(this).remove();
-								});
-
-								clearTimeout(t);
-							},options.autoCloseTimeout);
-						}
-
-						if(eventOptions.callback && typeof eventOptions.callback === 'function'){
-							eventOptions.callback();
-						}
-					});
+				if(typeof value === 'object' && value.hasOwnProperty('name')){
+					_methods.add.call($this,value);
 				}
 			});
 		}
-		
-		//add an alert to the dom
-		function addAlert(type,message,addCloseButton){
-			var newElement;
-
-			if(options.uiFramework === 'jqueryui'){
-				newElement = addAlertTojQueryUI.apply(this,$.makeArray(arguments));
-			}
-			else if(options.uiFramework === 'bootstrap'){
-				newElement = addAlertToBootstrap.apply(this,$.makeArray(arguments));
-			}
-			else{
-				newElement = addAlertToDefault.apply(this,$.makeArray(arguments));
-			}
-				
-			newElement.hide();
-
-			return newElement;
-		}
-
-		function addAlertTojQueryUI(type,message,addCloseButton){
-
-			var newElement = jQueryUIElem.clone();
-			var firstSpan = newElement.find("span:first");
-
-			if(type === 'error'){
-				firstSpan.addClass(jQueryUIErrorClass);
-			}
-			else{
-				firstSpan.addClass(jQueryUISuccessClass);
-			}
-
-			if(addCloseButton){
-				var closeButton = $(jQueryUICloseButton).clone();
-
-				closeButton.on('click',function(){
-					$(this).parent().parent().fadeOut('slow');
-				});
-
-				newElement.append(jQueryUICloseButton);
-			}
-
-			newElement.find('span:nth-child(2)').html(message);
-
-			return newElement;
-		}
-
-		function addAlertToDefault(type,message,addCloseButton){
-
-			var newElement = defaultElem.clone();
-
-			if(type === 'error'){
-				newElement.addClass(defaultErrorClass);
-			}
-			else if(type === 'success'){
-				newElement.addClass(defaultSuccessClass);
-			}
-
-			if(addCloseButton){
-				var closeButton = defaultCloseButton.clone();
-
-				closeButton.on('click',function(){
-					$(this).parent().fadeOut('slow');
-				});
-
-				newElement.append(closeButton);
-			}
-
-			newElement.find('p').html(message);
-
-			return newElement;
-		}
-
-		function addAlertToBootstrap(type,message,addCloseButton){
-			var newElement = bootstrapElem.clone();
-
-			if(type === 'error'){
-				newElement.addClass(bootstrapErrorClass);
-			}
-			else if(type === 'success'){
-				newElement.addClass(bootstrapSuccessClass);
-			}
-			else{
-				newElement.addClass(bootstrapInfoClass);
-			}
-			
-			if(addCloseButton){
-				var closeButton = $(bootstrapCloseButton).clone();
-
-				closeButton.on('click',function(){
-					$(this).parent().fadeOut('slow');
-				});
-
-				newElement.append(closeButton);
-			}
-
-			newElement.find('span').html(message);
-
-			return newElement;
-		}
-
+	
 		return this;
 	};
 }(jQuery,window,window.document));

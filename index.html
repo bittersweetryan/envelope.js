@@ -186,7 +186,7 @@
         </div>
         <div class="row">
             <div class="span12">
-            <p>Getting started is easy:</p>
+            <p class="lead">Getting started is easy:</p>
                 <ol>
                   <li>Download the code using the links in the <a href="#getIt">Get it!</a> section or visit the <a href="https://github.com/bittersweetryan/envelope.js">GitHub</a> page.</li>
                   <li>If you want to use the default styles add the envelope.css stylesheet to your page, if you are using jQueryUI or Twitter's Bootstrap you don't have to do anything envelope will use the styles included in those frameworks.</li>
@@ -315,15 +315,24 @@
         </section>
     </div>
     <!-- end row -->
-    <!--
-    <div class="row">
+   <div class="row">
         <div class="span12">
-            <section>
-                <h3>Methods</h3>
-            </section>
+            <div class="page-header">
+                <h1 class="sunken-text-light">Appending Text To Messages</h1>
+            </div>
         </div>
     </div>
--->
+    <div class="row">
+        <section>
+            <div class="span4">
+                <p class="lead">To append text to a message when the event is triggered just pass the additional text as the second parameter of the <code class="prettyprint">trigger()</code>method.</p>
+            </div>
+            <div class="span8">
+                <pre class="prettyprint">$("selector").trigger("save.success","Additional text");</pre>
+            </div> 
+        </section>
+    </div>
+    <!-- end row -->
     <footer>
       <p>Hosted on GitHub Pages</p>
     </footer>
