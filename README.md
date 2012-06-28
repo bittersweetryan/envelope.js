@@ -107,7 +107,7 @@ Events is an array of objects with the following properties, all are optional:
 
 ####add(event options)
 
-You can add events to envelope after initialization by using the _add_ method.  
+You can add events to envelope after initialization by using the _add_ method. 
 
 ```js
 $("#messages").envelope('add',
@@ -128,6 +128,15 @@ You can remove events after initialization by using the _remove_ method.
 ```js
 $("#messages").envelope('remove','test.success');
 ```
+
+###Appending text when triggering an event
+
+You can append text to an event's message that was set upon initialzation. In order to append text just pass the new text as the second parameter of the `trigger()` method call.  _Note, a space will automatically be placed before the appended text._
+
+```js
+$("selector").trigger("save.success","Additional text to append.");
+```
+
 
 ##TODO
  * append additional text to the message triggered
