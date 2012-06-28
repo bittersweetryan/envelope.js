@@ -30,7 +30,16 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 				
 			newElement.hide();
 
-			$(document).on(options.name,function(){
+			$(document).on(options.name,function(e,messageToAppend){
+
+				if(messageToAppend){
+					var $msg = newElement.find(".message");
+
+					$msg.html(
+						$msg.html() + ' ' + messageToAppend
+					);
+				}
+
 				self.append(newElement);
 
 				newElement.fadeIn('slow');
@@ -80,9 +89,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 	//vars for creating UI elements
 	var jQueryUIElem = $('<p><span class="ui-icon" style="float: left; margin-right: .3em;"></span>' +
-						'<span></span></p>'),
+						'<span class="message"></span></p>'),
 
-		bootstrapElem = $('<div class="alert"><span></span></div>'),
+		bootstrapElem = $('<div class="alert"><span class="message"></span></div>'),
 
 		jQueryUISuccessClass = 'ui-icon-info',
 
@@ -98,9 +107,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 		jQueryUICloseButton = '<a href="#" class="ui-dialog-titlebar-close ui-corner-all" role="button"><span class="ui-icon ui-icon-closethick" style="float: right">close</span></a>',
 
-		defaultElem = $('<div class="env_container"><p class="sunkenText">Hello World</p></div>'),
+		defaultElem = $('<div class="env_container"><span class="message">Hello World</span></div>'),
 
-		defaultCloseButton = $('<div class="close sunkenText">x</div>'),
+		defaultCloseButton = $('<div class="close">x</div>'),
 
 		defaultSuccessClass = 'success',
 
@@ -127,7 +136,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			newElement.append(jQueryUICloseButton);
 		}
 
-		newElement.find('span:nth-child(2)').html(message);
+		newElement.find('span.message').html(message);
 
 		return newElement;
 	}
@@ -153,7 +162,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			newElement.append(closeButton);
 		}
 
-		newElement.find('p').html(message);
+		newElement.find('span.message').html(message);
 
 		return newElement;
 	}
@@ -181,7 +190,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			newElement.append(closeButton);
 		}
 
-		newElement.find('span').html(message);
+		newElement.find('span.message').html(message);
 
 		return newElement;
 	}

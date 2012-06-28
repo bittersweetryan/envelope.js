@@ -21,7 +21,7 @@
 		$(function(){
 			
 		$("#successButton").on('click',function(){
-			$(this).trigger('test.success');
+			$(this).trigger('test.success', 'Hello World');
 		});
 
 		$("#errorButton").on('click',function(){
@@ -29,7 +29,7 @@
 		});
 		
 		$("#untypedButton").on('click',function(){
-			$(this).trigger('test.untyped');
+			$(this).trigger('test.untyped',"Hello world");
 		});
 		
 		$("#messages").envelope(
