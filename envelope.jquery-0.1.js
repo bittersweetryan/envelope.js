@@ -109,7 +109,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 		defaultElem = $('<div class="env_container"><span class="message">Hello World</span></div>'),
 
-		defaultCloseButton = $('<div class="close">x</div>'),
+		defaultCloseButton = $('<div class="close">&times;</div>'),
 
 		defaultSuccessClass = 'success',
 
