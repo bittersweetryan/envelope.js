@@ -645,4 +645,85 @@ describe("UI Framework independent stuff.",function(){
 	});
 });
 
+describe("It should trigger events",function(){
+
+	beforeEach(function(){
+		loadFixtures('envelopeFixture_default.html');
+
+		$("#messages").envelope(
+			[
+				{
+					name : 'test.success',
+					message: 'Success saving test.',
+					type: 'success',
+					addCloseButton : true,
+					autoClose : true
+				}
+			]
+		);
+	});
+
+	it("Should trigger before show.",function(){
+		var spy = new jasmine.createSpy();
+
+		$("#successButton").on("envelope.show",spy);
+
+		runs( function(){
+			$("#successButton").trigger('test.success','New text.');
+		});
+
+		runs(function(){
+			expect(spy).toHaveBeenCalled();
+		});
+	});
+
+	it("Should trigger after shown",function(){
+		var spy = new jasmine.createSpy();
+
+		$("#successButton").on("envelope.shown",spy);
+
+		runs( function(){
+			$("#successButton").trigger('test.success','New text.');
+		});
+
+		runs(function(){
+			expect(spy).toHaveBeenCalled();
+		});
+	});
+
+	it("Should tigger hide",function(){
+		var spy = new jasmine.createSpy();
+
+		$("#successButton").on("envelope.hide",spy);
+
+		runs( function(){
+			$("#successButton").trigger('test.success','New text.');
+		});
+
+		runs( function(){
+			$("#messages").find(".close").trigger('click');
+		});
+
+		runs(function(){
+			expect(spy).toHaveBeenCalled();
+		});
+	});
+
+	it("Should trigger autoClose",function(){
+		var spy = new jasmine.createSpy();
+
+		$("#successButton").on("envelope.autoHide",spy);
+
+		runs( function(){
+			$("#successButton").trigger('test.success','New text.');
+		});
+
+		waits(1200);
+
+		runs(function(){
+			expect(spy).toHaveBeenCalled();
+		});
+	});
+});
+
 
