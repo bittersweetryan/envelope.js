@@ -14,9 +14,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 	var _methods = {
 		add : function(options){
 			var newElement,
-				self = this;
+				self = this,
+				_options,
+				_eventDefaults;
 
-			options = $.extend({},_eventDefaults,options);
+			_options = $.extend({},_eventDefaults,options);
 
 			if(_options.uiFramework.search(new RegExp('jqueryui','i')) === 0){
 				newElement = addAlertTojQueryUI(options.type,options.message,options.addCloseButton);
