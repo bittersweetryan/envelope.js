@@ -26,6 +26,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			else if(_options.uiFramework.search(new RegExp('bootstrap','i')) === 0){
 				newElement = addAlertToBootstrap(options.type,options.message,options.addCloseButton);
 			}
+			else if(_options.uiFramework.search(new RegExp('foundation','i')) === 0){
+				newElement = addAlertToFoundation(options.type,options.message,options.addCloseButton);
+			}
 			else{
 				newElement = addAlertToDefault(options.type,options.message,options.addCloseButton);
 			}
