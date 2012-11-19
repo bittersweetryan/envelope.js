@@ -90,10 +90,22 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 	};
 
 	//vars for creating UI elements
-	var jQueryUIElem = $('<p><span class="ui-icon" style="float: left; margin-right: .3em;"></span>' +
-						'<span class="message"></span></p>'),
+	var jQueryUIElem = '<p><span class="ui-icon" style="float: left; margin-right: .3em;"></span>' +
+						'<span class="message"></span></p>',
 
-		bootstrapElem = $('<div class="alert"><span class="message"></span></div>'),
+		bootstrapElem = '<div class="alert"><span class="message"></span></div>',
+
+		foundationElem = '<div class="alert-box"></div>',
+
+		defaultElem = '<div class="env_container"><span class="message">Hello World</span></div>',
+
+		bootstrapCloseButton = '<button class="close" data-dismiss="alert">x</button>',
+
+		jQueryUICloseButton = '<a href="#" class="ui-dialog-titlebar-close ui-corner-all" role="button"><span class="ui-icon ui-icon-closethick" style="float: right">close</span></a>',
+
+		defaultCloseButton = '<div class="close">&times;</div>',
+
+		foundationCloseButton = '<a href="" class="close">×</a>',
 
 		jQueryUISuccessClass = 'ui-icon-info',
 
@@ -105,20 +117,17 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 		bootstrapInfoClass = 'alert-info',
 
-		bootstrapCloseButton = '<button class="close" data-dismiss="alert">x</button>',
-
-		jQueryUICloseButton = '<a href="#" class="ui-dialog-titlebar-close ui-corner-all" role="button"><span class="ui-icon ui-icon-closethick" style="float: right">close</span></a>',
-
-		defaultElem = $('<div class="env_container"><span class="message">Hello World</span></div>'),
-
-		defaultCloseButton = $('<div class="close">&times;</div>'),
-
 		defaultSuccessClass = 'success',
 
-		defaultErrorClass = 'error';
+		defaultErrorClass = 'error',
+
+		foundationSuccessClass = 'success',
+
+		foundationErrorClass = 'alert';
+		
 
 	function addAlertTojQueryUI(type,message,addCloseButton){
-		var newElement = jQueryUIElem.clone();
+		var newElement = $(jQueryUIElem).clone();
 		var firstSpan = newElement.find("span:first");
 
 		if(type === 'error'){
@@ -135,7 +144,30 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 				$(this).parent().parent().fadeOut('slow');
 			});
 
-			newElement.append(jQueryUICloseButton);
+			newElement.append(closeButton);
+		}
+
+		newElement.find('span.message').html(message);
+
+		return newElement;
+	}
+
+
+	function addAlertToFoundation(type,message,addCloseButton){
+		var newElement = $(foundationElem).clone();
+		var firstSpan = newElement.find("span:first");
+
+		if(type === 'error'){
+			firstSpan.addClass(foundationErrorClass);
+		}
+		else{
+			firstSpan.addClass(foundationSuccessClass);
+		}
+
+		if(addCloseButton){
+			var closeButton = $(foundationCloseButton).clone();
+
+			newElement.append(closeButton);
 		}
 
 		newElement.find('span.message').html(message);
@@ -145,7 +177,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 	function addAlertToDefault(type,message,addCloseButton){
 
-		var newElement = defaultElem.clone();
+		var newElement = $(defaultElem).clone();
 
 		if(type === 'error'){
 			newElement.addClass(defaultErrorClass);
@@ -170,7 +202,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 	}
 
 	function addAlertToBootstrap(type,message,addCloseButton){
-		var newElement = bootstrapElem.clone();
+		var newElement = $(bootstrapElem).clone();
 
 		if(type === 'error'){
 			newElement.addClass(bootstrapErrorClass);

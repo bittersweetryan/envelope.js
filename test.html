@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .full{
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                text-align: center;
+                vertical-align:middle;
+                z-index:100;
+            }
+            
+            .inner{
+                 width: 100%;
+                height: 100%;
+                position: absolute;
+                text-align: center;
+                top:50%;
+            }
+            
+            .overlay {
+            	z-index: 99;
+                background-color: rgb(54, 54, 54); 
+                position: absolute;
+                -moz-opacity: 0.8;
+                opacity:.80;
+                filter: alpha(opacity=80);
+                width: 100%;
+                height:100%;
+                top: 0%;
+                left: 0%;
+            }
+        </style>
+    </head>
+    <body>
+         <div class="full"><div class="inner">Hello</div></div>
+         <div class="overlay" ></div>
+    </body>
+</html>
+    
