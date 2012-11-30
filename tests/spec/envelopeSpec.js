@@ -659,7 +659,7 @@ describe("Foundation",function(){
 			});
 			
 			runs ( function(){
-				expect($("#messages").find("div")).toBe(".alert-success");
+				expect($("#messages").find("div")).toBe(".success");
 			});
 
 		});
@@ -679,7 +679,7 @@ describe("Foundation",function(){
 		it("should add a element to the dom on error",function(){
 			$("#errorButton").trigger('test.error');
 
-			expect($("#messages").find("div")).toBe(".alert-error");
+			expect($("#messages").find("div")).toBe(".alert");
 		});
 
 		it("should add a message on a error event form dom",function(){
@@ -697,7 +697,7 @@ describe("Foundation",function(){
 		it("should add a untyped message to the dom",function(){
 			$("#untypedButton").trigger('test.untyped');
 
-			expect($("#messages").find("div")).toBe(".alert-info");
+			expect($("#messages").find("div")).toBe(".alert-box");
 		});
 
 		it("should add a message on a untyped event from dom",function(){
@@ -746,7 +746,7 @@ describe("Foundation",function(){
 			});
 			
 			runs ( function(){
-				expect($("#messages").find("div")).toBe(".alert-success");
+				expect($("#messages").find("div")).toBe(".success");
 			});
 
 		});
@@ -774,7 +774,7 @@ describe("Foundation",function(){
 			});
 			
 			runs ( function(){
-				expect($("#messages").find("div")).not.toBe(".alert-success");
+				expect($("#messages").find("div")).not.toBe(".success");
 			});
 		});
 	});
@@ -782,8 +782,9 @@ describe("Foundation",function(){
 	describe("Envlope should respond to options properly for foundation.",function(){
 
 		beforeEach(function(){
+			
 			loadFixtures('envelopeFixture_Foundation.html');
-
+            
 			$("#messages").envelope(
 				{
 					uiFramework : 'foundation',
@@ -801,12 +802,13 @@ describe("Foundation",function(){
 			);
 		});
 
+       
 		it("Should disappear after default amount of time.",function(){
 
 			runs ( function(){
 				$("#successButton").trigger('test.success');
 			});
-			
+			     
 			waits(1200);
 
 			runs ( function(){
@@ -816,6 +818,7 @@ describe("Foundation",function(){
 		});
 
 		it("Should add a close button",function(){
+            
 			$("#successButton").trigger('test.success');
 
 			expect($("#messages")).toContain(".close");

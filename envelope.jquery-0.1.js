@@ -112,7 +112,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 		foundationElem = $('<div class="alert-box"></div>'),
 
-		foundationCloseButton = '<a href="" class="close">×</a>',
+		foundationCloseButton = '<a class="close">x</a>',
 
 		foundationSuccessClass = 'success',
 
@@ -153,7 +153,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 	}
 
 	function addAlertToFoundation(type,message,addCloseButton){
-		var newElement = foundationElem.clone();
+		
+        var newElement = foundationElem.clone();
 
 		if(type === 'error'){
 			newElement.addClass(foundationErrorClass);
@@ -164,12 +165,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 		if(addCloseButton){
 			var closeButton = $(foundationCloseButton).clone();
-
 			newElement.append(closeButton);
 		}
-
-		newElement.text(message);
-
+        
+		newElement.prepend('<span>' + message + '</span>');
+        
 		return newElement;
 	}
 
