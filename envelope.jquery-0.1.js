@@ -24,6 +24,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			else if(_options.uiFramework.search(new RegExp('bootstrap','i')) === 0){
 				newElement = addAlertToBootstrap(options.type,options.message,options.addCloseButton);
 			}
+			else if(_options.uiFramework.search(new RegExp('foundation','i')) === 0){
+				newElement = addAlertToFoundation(options.type,options.message,options.addCloseButton);
+			}
 			else{
 				newElement = addAlertToDefault(options.type,options.message,options.addCloseButton);
 			}
@@ -90,12 +93,14 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 	//vars for creating UI elements
 	var jQueryUIElem = $('<p><span class="ui-icon" style="float: left; margin-right: .3em;"></span>' +
 						'<span class="message"></span></p>'),
-
-		bootstrapElem = $('<div class="alert"><span class="message"></span></div>'),
-
+		
 		jQueryUISuccessClass = 'ui-icon-info',
 
 		jQueryUIErrorClass = 'ui-icon-error',
+
+		jQueryUICloseButton = '<a href="#" class="ui-dialog-titlebar-close ui-corner-all" role="button"><span class="ui-icon ui-icon-closethick" style="float: right">close</span></a>',
+
+		bootstrapElem = $('<div class="alert"><span class="message"></span></div>'),
 
 		bootstrapSuccessClass = 'alert-success',
 
@@ -105,7 +110,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 		bootstrapCloseButton = '<button class="close" data-dismiss="alert">x</button>',
 
-		jQueryUICloseButton = '<a href="#" class="ui-dialog-titlebar-close ui-corner-all" role="button"><span class="ui-icon ui-icon-closethick" style="float: right">close</span></a>',
+		foundationElem = $('<div class="alert-box"></div>'),
+
+		foundationCloseButton = '<a href="" class="close">×</a>',
+
+		foundationSuccessClass = 'success',
+
+		foundationErrorClass = 'alert',
 
 		defaultElem = $('<div class="env_container"><span class="message">Hello World</span></div>'),
 
@@ -116,8 +127,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		defaultErrorClass = 'error';
 
 	function addAlertTojQueryUI(type,message,addCloseButton){
-		var newElement = jQueryUIElem.clone();
-		var firstSpan = newElement.find("span:first");
+		var newElement = jQueryUIElem.clone(),
+			firstSpan = newElement.find("span:first");
 
 		if(type === 'error'){
 			firstSpan.addClass(jQueryUIErrorClass);
@@ -137,6 +148,27 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		}
 
 		newElement.find('span.message').html(message);
+
+		return newElement;
+	}
+
+	function addAlertToFoundation(type,message,addCloseButton){
+		var newElement = foundationElem.clone();
+
+		if(type === 'error'){
+			newElement.addClass(foundationErrorClass);
+		}
+		else if(type === 'success'){
+			newElement.addClass(foundationSuccessClass);
+		}
+
+		if(addCloseButton){
+			var closeButton = $(foundationCloseButton).clone();
+
+			newElement.append(closeButton);
+		}
+
+		newElement.text(message);
 
 		return newElement;
 	}
