@@ -3,6 +3,7 @@ $(function(){
 
 	var $messageContainer_bootstrap = $("#messages_bootstrap");
 	var $messageContainer_jqueryui = $("#messages_jqueryui");
+	var $messageContainer_foundation = $("#messages_foundation");
 	var $messageContainer_default = $("#messages_default");
 
 	$messageContainer_bootstrap.envelope(
@@ -33,6 +34,45 @@ $(function(){
 			},
 			{
 				name : 'bootstrap.info',
+				message: "Something happened!",
+				callback: function(){
+				//	$(this).trigger("callback.fired");
+				},
+				autoClose: true,
+				addCloseButton: true,
+				type: 'info'
+			}
+		]
+	);
+
+	$messageContainer_foundation.envelope(
+		{
+			uiFramework : 'foundation',
+			autoCloseTimeout : 5000
+		},
+		[
+			{
+				name : 'foundation.success',
+				message: "The operation was a success!",
+				callback: function(){
+				//	$(this).trigger("callback.fired");
+				},
+				autoClose: true,
+				addCloseButton: true,
+				type: 'success'
+			},
+			{
+				name : 'foundation.error',
+				message: "There was an error!",
+				callback: function(){
+				//	$(this).trigger("callback.fired");
+				},
+				autoClose: true,
+				addCloseButton: true,
+				type: 'error'
+			},
+			{
+				name : 'foundation.info',
 				message: "Something happened!",
 				callback: function(){
 				//	$(this).trigger("callback.fired");
