@@ -1,0 +1,9 @@
+{
+	"name" : "envelope.jquery",
+	"title" : "envelope.js",
+	"version" : "0.2.1",
+	"homepage" : "http://bittersweetryan.github.com/envelope.js",
+	"author" : {
+		"name" : "Ryan Anklam"
+	}
+}
