@@ -146,3 +146,4 @@ $("selector").trigger("save.success","Additional text to append.");
      * hide
      * autoHide
  * Make sure callback runs after event, use deferreds? 
+ * Clean up lazy initialization of creating elements
