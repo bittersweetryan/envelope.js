@@ -55,12 +55,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 				if( options.autoClose ){
 
-					var t = setTimeout( function(){
+					var t = window.setTimeout( function(){
 						newElement.fadeOut( 'slow', function(){
 							$( this ).remove();
 						});
 
-						clearTimeout( t );
+						window.clearTimeout( t );
 					}, _options.autoCloseTimeout );
 				}
 
@@ -99,7 +99,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 	//vars for creating UI elements
 	var elems = {
 		jqueryui : {
-			ele : $( '<p><span class="ui-icon" style="float: left; margin-right: .3em;"></span>' + '<span class="message"></span></p>' ),
+			ele : '<p><span class="ui-icon" style="float: left; margin-right: .3em;"></span>' + '<span class="message"></span></p>',
 			successClass : 'ui-icon-info',
 			errorClass : 'ui-icon-error',
 			infoClass : 'ui-icon-info',
@@ -112,7 +112,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			}
 		},
 		bootstrap : {
-			ele : $( '<div class="alert"><span class="message"></span></div>' ),
+			ele : '<div class="alert"><span class="message"></span></div>',
 			successClass : 'alert-success',
 			errorClass : 'alert-error',
 			infoClass : 'alert-info',
@@ -126,7 +126,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			}
 		},
 		foundation : {
-			ele : $( '<div class="alert-box"><span class="message"></span></div>' ),
+			ele : '<div class="alert-box"><span class="message"></span></div>',
 			successClass : 'success',
 			errorClass : 'alert',
 			infoClass : null,
@@ -140,7 +140,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			}
 		},
 		envelope : {
-			ele : $( '<div class="env_container"><span class="message">Hello World</span></div>' ),
+			ele : '<div class="env_container"><span class="message">Hello World</span></div>',
 			successClass : 'success',
 			errorClass : 'error',
 			infoClass : null,
@@ -158,7 +158,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 	var addAlert = function( framework, type, message, addCloseButton ){
 
-		var newElement = elems[ framework ].ele.clone(),
+		var newElement = $(elems[ framework ].ele),
 			addToSelector = elems[ framework ].addToSelector,
 			addTo = null;
 

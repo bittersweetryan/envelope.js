@@ -1,4 +1,4 @@
-/*! envelope.js - v0.2.1 - 2012-12-04
+/*! envelope.js - v0.2.2 - 2012-12-11
 * http://bittersweetryan.github.com/envelope.js
 * Copyright (c) 2012 Ryan Anklam; Licensed  */
 
@@ -49,12 +49,12 @@
 
 				if( options.autoClose ){
 
-					var t = setTimeout( function(){
+					var t = window.setTimeout( function(){
 						newElement.fadeOut( 'slow', function(){
 							$( this ).remove();
 						});
 
-						clearTimeout( t );
+						window.clearTimeout( t );
 					}, _options.autoCloseTimeout );
 				}
 
@@ -93,7 +93,7 @@
 	//vars for creating UI elements
 	var elems = {
 		jqueryui : {
-			ele : $( '<p><span class="ui-icon" style="float: left; margin-right: .3em;"></span>' + '<span class="message"></span></p>' ),
+			ele : '<p><span class="ui-icon" style="float: left; margin-right: .3em;"></span>' + '<span class="message"></span></p>',
 			successClass : 'ui-icon-info',
 			errorClass : 'ui-icon-error',
 			infoClass : 'ui-icon-info',
@@ -106,7 +106,7 @@
 			}
 		},
 		bootstrap : {
-			ele : $( '<div class="alert"><span class="message"></span></div>' ),
+			ele : '<div class="alert"><span class="message"></span></div>',
 			successClass : 'alert-success',
 			errorClass : 'alert-error',
 			infoClass : 'alert-info',
@@ -120,7 +120,7 @@
 			}
 		},
 		foundation : {
-			ele : $( '<div class="alert-box"><span class="message"></span></div>' ),
+			ele : '<div class="alert-box"><span class="message"></span></div>',
 			successClass : 'success',
 			errorClass : 'alert',
 			infoClass : null,
@@ -134,7 +134,7 @@
 			}
 		},
 		envelope : {
-			ele : $( '<div class="env_container"><span class="message">Hello World</span></div>' ),
+			ele : '<div class="env_container"><span class="message">Hello World</span></div>',
 			successClass : 'success',
 			errorClass : 'error',
 			infoClass : null,
@@ -152,7 +152,7 @@
 
 	var addAlert = function( framework, type, message, addCloseButton ){
 
-		var newElement = elems[ framework ].ele.clone(),
+		var newElement = $(elems[ framework ].ele),
 			addToSelector = elems[ framework ].addToSelector,
 			addTo = null;
 
